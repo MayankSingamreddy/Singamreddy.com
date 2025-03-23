@@ -162,14 +162,14 @@
         }
         
         /* New hover styles for specific links */
-        .nav a[href="/Synergy"] {
+        .nav a[href="/Collab"] {
             color: #ff212e;
             text-decoration: underline;
             font-weight: 300;
             font-size: var(--nav-font-size);
         }
         
-        .nav a[href="/Synergy"]:hover {
+        .nav a[href="/Collab"]:hover {
             color: #ff9097;
         }
         
@@ -288,7 +288,7 @@
             color: #9cbdcb !important;
         }
         
-        .content a[href="/Synergy"]:hover {
+        .content a[href="/Collab"]:hover {
             color: #ff9097 !important;
         }
         
@@ -441,8 +441,8 @@
         <div class="name"><a href="https://singamreddy.com" id="animated-name">Mayank Singamreddy</a></div>
         
         <div class="nav">
-            <a href="/Synergy">Synergy</a>
-            <a href="/Mystic">Mystic</a>
+            <a href="/Collab">Collab</a>
+            <a href="/Mystic">Mysticism</a>
         </div>
     </div>
     
@@ -452,16 +452,16 @@
             "<span class="flowing-text">More</span> <span class="flowing-text">scrappy</span> <span class="flowing-text">than</span> <span class="flowing-text">brilliant.</span>"
         </p>
         
-        <p>
-            At <i class="fa-brands fa-meta" style="color: #0081FB; font-size: 20px;"></i> in SF making AI data products. Prev <i class="fa-brands fa-apple" style="color: #979797; font-size: 24px;"></i> handling GenAI.
+        <p style="font-weight: 400;">
+            In SF making <span class="flowing-text"><i class="fa-brands fa-meta" style="color: #0081FB; font-size: 20px;"></i></span>'s AI data products. Prev <span class="flowing-text"><i class="fa-brands fa-apple" style="color: #979797; font-size: 24px;"></i></span> handling GenAI.
         </p>
         
         <p>
-            Artist behind <a href="https://thecolorsofanime.com" style="color: #8900ff; text-decoration: underline;font-weight: 400;">TheColorsOfAnime</a> and <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" style="color: #397b96; text-decoration: underline;font-weight: 400;">CheerSphere</a> on the App Store.
+            Artist of <a href="https://thecolorsofanime.com" style="color: #8900ff; text-decoration: underline;">TheColorsOfAnime</a> and <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" style="color: #397b96; text-decoration: underline;">CheerSphere</a> on the App Store.
         </p>
         
         <p>
-            Looking for the others. <a href="/Synergy" style="text-decoration: underline; color: #ff212e;font-weight: 400;">Synergy</a> to see if we're compatible.
+            Looking for my people. <a href="/Collab" style="text-decoration: none; color: #ff212e;">Collab</a> tab for what I'm excited about.
         </p>
     </div>
     
@@ -470,6 +470,12 @@
     <!-- Social media links and image slider -->
     <div class="social-links-container">
         <div class="social-links">
+            <div>
+                <a href="https://x.com/mayonkeyy" class="twitter-link">
+                    <i class="fa-brands fa-twitter social-icon"></i>
+                    mayonkeyy
+                </a>
+            </div>
             <div>
                 <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link">
                     <i class="fa-brands fa-linkedin social-icon"></i>
@@ -482,22 +488,17 @@
                     mayonkey
                 </a>
             </div>
+            
             <div>
-                <a href="https://x.com/mayonkeyy" class="twitter-link">
-                    <i class="fa-brands fa-twitter social-icon"></i>
-                    mayonkeyy
-                </a>
-            </div>
-            <!-- <div>
                 <a href="https://github.com/MayankSingamreddy" class="github-link">
                     <i class="fa-brands fa-github social-icon"></i>
                     MayankSingamreddy
                 </a>
-            </div> -->
+            </div>
             <div>
                 <a class="email-link">
                     <i class="fa-solid fa-clone social-icon"></i>
-                    singamreddy.mayank@gmail.com
+                    singamreddy.mayank@gmail
                 </a>
             </div>
         </div>
@@ -570,102 +571,6 @@
                     activeTimeout = setTimeout(resetView, 500);
                 });
             }
-            
-            // Color diffusion effect for hyperlinks
-            function createColorDiffusionEffect(event, linkColor) {
-              // Prevent immediate navigation
-              event.preventDefault();
-              
-              const href = this.getAttribute('href');
-              
-              // Create overlay element
-              const overlay = document.createElement('div');
-              overlay.className = 'color-diffusion-overlay'; // Add class for identification
-              overlay.style.position = 'fixed';
-              overlay.style.top = '0';
-              overlay.style.left = '0';
-              overlay.style.width = '100%';
-              overlay.style.height = '100%';
-              overlay.style.backgroundColor = linkColor;
-              overlay.style.opacity = '0';
-              overlay.style.zIndex = '9999';
-              overlay.style.pointerEvents = 'none';
-              overlay.style.backdropFilter = 'blur(0px)';
-              overlay.style.transition = 'opacity 0.3s ease, backdrop-filter 0.3s ease';
-              
-              document.body.appendChild(overlay);
-              
-              // Trigger the effect
-              setTimeout(() => {
-                overlay.style.opacity = '0.8';
-                overlay.style.backdropFilter = 'blur(10px)';
-              }, 10);
-              
-              // Navigate after animation completes
-              setTimeout(() => {
-                window.location.href = href;
-              }, 700);
-            }
-            
-            // Apply color diffusion effect to relevant links
-            const applyColorDiffusionToLinks = () => {
-                // Nav links
-                const synergyLink = document.querySelector('.nav a[href="/Synergy"]');
-                if (synergyLink) {
-                    synergyLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#ff212e');
-                    });
-                }
-                
-                const mysticLink = document.querySelector('.nav a[href="/Mystic"]');
-                if (mysticLink) {
-                    mysticLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#8A00C4');
-                    });
-                }
-                
-                // Content links
-                const colorOfAnimeLink = document.querySelector('a[href="https://thecolorsofanime.com"]');
-                if (colorOfAnimeLink) {
-                    colorOfAnimeLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#8900ff');
-                    });
-                }
-                
-                const cheerSphereLink = document.querySelector('a[href="https://apps.apple.com/us/app/cheersphere/id6503993239"]');
-                if (cheerSphereLink) {
-                    cheerSphereLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#397b96');
-                    });
-                }
-                
-                const contentSynergyLink = document.querySelector('.content a[href="/Synergy"]');
-                if (contentSynergyLink) {
-                    contentSynergyLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#ff212e');
-                    });
-                }
-                
-                // Social links with their brand colors
-                const socialLinks = {
-                    '.linkedin-link': '#0077B5',
-                    '.instagram-link': '#E1306C',
-                    '.twitter-link': '#1DA1F2',
-                    '.github-link': '#333333'
-                };
-                
-                Object.entries(socialLinks).forEach(([selector, color]) => {
-                    const link = document.querySelector(selector);
-                    if (link) {
-                        link.addEventListener('click', function(e) {
-                            createColorDiffusionEffect.call(this, e, color);
-                        });
-                    }
-                });
-            };
-            
-            // Call the function to apply effects
-            applyColorDiffusionToLinks();
             
             // Email copy functionality
             const emailLink = document.querySelector('.email-link');
