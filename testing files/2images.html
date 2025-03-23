@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Image Slider</title>
+    <style>
+        .image-circle-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .image-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: clip-path 0.5s ease; /* Changed from transform to clip-path */
+        }
+
+        .image-left {
+            left: 0;
+            z-index: 1;
+        }
+
+        .image-right {
+            right: 0;
+            z-index: 1;
+        }
+
+        .image-wrapper img {
+            position: absolute;
+            height: 100%;
+            width: auto;
+            max-width: none;
+            top: 0;
+        }
+
+        .image-left img {
+            left: 0;
+        }
+
+        .image-right img {
+            right: 0;
+        }
+
+        /* Initial state shows both images */
+        .image-left {
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        }
+
+        .image-right {
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+        }
+        
+        /* Add hitboxes for better interaction */
+        .left-hitbox, .right-hitbox {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+            z-index: 2;
+            cursor: pointer;
+        }
+        
+        .left-hitbox {
+            left: 0;
+        }
+        
+        .right-hitbox {
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-circle-container">
+        <!-- Add invisible hitboxes for better click detection -->
+        <div class="left-hitbox"></div>
+        <div class="right-hitbox"></div>
+        
+        <div class="image-wrapper image-left">
+            <img src=/Users/mayanksingamreddy/Documents/GitHub/Personal-Site/twitterpfp.jpg alt="First image">
+        </div>
+        <div class="image-wrapper image-right">
+            <img src=/Users/mayanksingamreddy/Documents/GitHub/Personal-Site/goodface.png alt="Second image">
+        </div>
+    </div>
+
+    <script>
+        const leftImage = document.querySelector('.image-left');
+        const rightImage = document.querySelector('.image-right');
+        const leftHitbox = document.querySelector('.left-hitbox');
+        const rightHitbox = document.querySelector('.right-hitbox');
+        let activeTimeout = null;
+
+        function showFullLeft() {
+            leftImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+            rightImage.style.clipPath = 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)';
+        }
+
+        function showFullRight() {
+            leftImage.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+            rightImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+        }
+
+        function resetView() {
+            leftImage.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
+            rightImage.style.clipPath = 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)';
+        }
+
+        // Use hitboxes for event listeners
+        leftHitbox.addEventListener('mouseenter', showFullLeft);
+        leftHitbox.addEventListener('mouseleave', resetView);
+        rightHitbox.addEventListener('mouseenter', showFullRight);
+        rightHitbox.addEventListener('mouseleave', resetView);
+
+        leftHitbox.addEventListener('click', () => {
+            showFullLeft();
+            if (activeTimeout) clearTimeout(activeTimeout);
+            activeTimeout = setTimeout(resetView, 1000);
+        });
+
+        rightHitbox.addEventListener('click', () => {
+            showFullRight();
+            if (activeTimeout) clearTimeout(activeTimeout);
+            activeTimeout = setTimeout(resetView, 1000);
+        });
+    </script>
+</body>
+</html>
