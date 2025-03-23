@@ -475,6 +475,10 @@
     <!-- JavaScript for the image slider -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Remove any existing color overlays (fixes back button issue)
+            const existingOverlays = document.querySelectorAll('.color-diffusion-overlay');
+            existingOverlays.forEach(overlay => overlay.remove());
+            
             // Image slider functionality
             const imageContainer = document.querySelector('.image-circle-container');
             const leftImage = document.querySelector('.image-left');
@@ -528,6 +532,7 @@
               
               // Create overlay element
               const overlay = document.createElement('div');
+              overlay.className = 'color-diffusion-overlay'; // Add class for identification
               overlay.style.position = 'fixed';
               overlay.style.top = '0';
               overlay.style.left = '0';
@@ -538,7 +543,7 @@
               overlay.style.zIndex = '9999';
               overlay.style.pointerEvents = 'none';
               overlay.style.backdropFilter = 'blur(0px)';
-              overlay.style.transition = 'opacity 0.7s ease, backdrop-filter 0.7s ease';
+              overlay.style.transition = 'opacity 0.3s ease, backdrop-filter 0.3s ease';
               
               document.body.appendChild(overlay);
               
@@ -586,7 +591,7 @@
                     });
                 }
                 
-                const contentSynergyLink = document.querySelector('a[href="/synergy.html"]');
+                const contentSynergyLink = document.querySelector('a[href="/Synergy"]');
                 if (contentSynergyLink) {
                     contentSynergyLink.addEventListener('click', function(e) {
                         createColorDiffusionEffect.call(this, e, '#ff212e');
