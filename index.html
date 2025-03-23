@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- update -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Singamreddy</title>
@@ -11,6 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="images/twitterpfp.jpg" as="image">
+    <link rel="preload" href="images/goodface.png" as="image">
     <style>
         /* Fade-in animation for page elements */
         @keyframes fadeIn {
@@ -81,17 +88,27 @@
             right: 0;
         }
         
-        /* Base styles */
+        /* Base styles with viewport-relative font sizing */
+        :root {
+            --base-font-size: 1vw;
+            --name-font-size: calc(var(--base-font-size) * 1.4);
+            --nav-font-size: calc(var(--base-font-size) * 1.4);
+            --content-font-size: calc(var(--base-font-size) * 1.1);
+            --social-font-size: calc(var(--base-font-size) * 0.9);
+            --social-icon-size: calc(var(--base-font-size) * 1.2);
+        }
+        
         body {
             font-family: "Inter", sans-serif;
             color: black;
             max-width: 600px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 5vh 20px;
             background-color: white;
-            font-size: 16px;
+            font-size: var(--content-font-size);
             font-weight: 300;
             animation: fadeIn 0.5s ease-in-out;
+            line-height: 1.4;
         }
         
         /* Header section with name and navigation */
@@ -105,7 +122,7 @@
         }
         
         .name {
-            font-size: 20px;
+            font-size: var(--name-font-size);
             font-weight: 400;
             max-width: 100%;
             word-wrap: break-word;
@@ -135,7 +152,7 @@
         .nav a {
             color: #777777;
             text-decoration: none;
-            font-size: 20px;
+            font-size: var(--nav-font-size);
             font-weight: 300;
         }
         
@@ -156,6 +173,7 @@
         p {
             margin-bottom: 0px;
             line-height: 1.3em;
+            font-size: var(--content-font-size);
         }
         
         .content {
@@ -190,7 +208,7 @@
         .social-links a {
             text-decoration: none;
             color: #767676;
-            font-size: 14px;
+            font-size: var(--social-font-size);
             display: flex;
             align-items: center;
             transition: color 0.3s ease;
@@ -199,7 +217,7 @@
         /* Social icon styles */
         .social-icon {
             width: 36px;
-            font-size: 18px;
+            font-size: var(--social-icon-size);
             display: inline-flex;
             justify-content: center;
             color: inherit;
@@ -245,8 +263,13 @@
             color: #3597c7;
         }
         
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* Responsive Design with dynamic font sizing */
+        /* Mobile/small screens */
+        @media (max-width: 480px) {
+            :root {
+                --base-font-size: 4vw;
+            }
+            
             .social-links-container {
                 flex-direction: column;
                 align-items: flex-start;
@@ -271,19 +294,53 @@
                 margin-left: auto;
             }
         }
-
-        @media (min-width: 769px) {
-            body {
-                font-size: 18px;
+        
+        /* Tablet screens */
+        @media (min-width: 481px) and (max-width: 768px) {
+            :root {
+                --base-font-size: 2.5vw;
             }
-
-            .name {
-                font-size: 22px;
+            
+            .social-links-container {
+                flex-direction: column;
+                align-items: flex-start;
             }
-
-            .nav a {
-                font-size: 22px;
+            
+            .image-circle-container {
+                margin-right: 0;
+                margin-top: 2em;
+                align-self: center;
             }
+        }
+
+        /* Desktop screens - set a base size that works well */
+        @media (min-width: 769px) and (max-width: 1200px) {
+            :root {
+                --base-font-size: 1.5vw;
+            }
+        }
+        
+        /* Large desktop screens - prevent text from becoming too large */
+        @media (min-width: 1201px) {
+            :root {
+                --base-font-size: 18px;
+            }
+        }
+
+        /* Font display swap to avoid FOIT */
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+            src: local('Inter Light'), local('Inter-Light');
+        }
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: local('Inter Regular'), local('Inter-Regular');
         }
     </style>
 </head>
@@ -374,127 +431,131 @@
     
     <!-- JavaScript for the image slider -->
     <script>
-        const leftImage = document.querySelector('.image-left');
-        const rightImage = document.querySelector('.image-right');
-        const leftHitbox = document.querySelector('.left-hitbox');
-        const rightHitbox = document.querySelector('.right-hitbox');
-        let activeTimeout = null;
-
-        // Functions for image slider
-        function showFullLeft() {
-            leftImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-            rightImage.style.clipPath = 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)';
-        }
-
-        function showFullRight() {
-            leftImage.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
-            rightImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-        }
-
-        function resetView() {
-            leftImage.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
-            rightImage.style.clipPath = 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)';
-        }
-
-        // Event listeners
-        leftHitbox.addEventListener('mouseenter', showFullLeft);
-        leftHitbox.addEventListener('mouseleave', resetView);
-        rightHitbox.addEventListener('mouseenter', showFullRight);
-        rightHitbox.addEventListener('mouseleave', resetView);
-
-        leftHitbox.addEventListener('click', () => {
-            showFullLeft();
-            if (activeTimeout) clearTimeout(activeTimeout);
-            activeTimeout = setTimeout(resetView, 500);
-        });
-
-        rightHitbox.addEventListener('click', () => {
-            showFullRight();
-            if (activeTimeout) clearTimeout(activeTimeout);
-            activeTimeout = setTimeout(resetView, 500);
-        });
-        
-        // Email copy functionality
-        document.querySelector('.email-link').addEventListener('click', function() {
-            const email = "singamreddy.mayank@gmail.com";
-            navigator.clipboard.writeText(email)
-                .then(() => {
-                    const notification = document.getElementById('copyNotification');
-                    notification.classList.add('show');
-                    setTimeout(() => {
-                        notification.classList.remove('show');
-                    }, 2000);
-                })
-                .catch(err => {
-                    console.error('Could not copy text: ', err);
-                });
-        });
-        
-        // Animated name functionality
         document.addEventListener('DOMContentLoaded', function() {
-            const nameElement = document.getElementById('animated-name');
-            const originalText = nameElement.textContent;
+            // Image slider functionality
+            const imageContainer = document.querySelector('.image-circle-container');
+            const leftImage = document.querySelector('.image-left');
+            const rightImage = document.querySelector('.image-right');
+            const leftHitbox = document.querySelector('.left-hitbox');
+            const rightHitbox = document.querySelector('.right-hitbox');
             
-            // Split the name into individual letter spans
-            nameElement.innerHTML = originalText.split('').map(letter => 
-                letter === ' ' ? 
-                `<span>&nbsp;</span>` : 
-                `<span>${letter}</span>`
-            ).join('');
-            
-            const letters = nameElement.querySelectorAll('span');
-            const colors = ['#3597C7', '#F8C630', '#7FC6A4'];
-            let animationInterval;
-            let isHovered = false;
-            
-            // Function to update colors
-            function updateColors() {
-                if (isHovered) return;
-                
-                letters.forEach(letter => {
-                    // Don't color spaces
-                    if (letter.innerHTML === '&nbsp;') {
-                        letter.style.color = 'transparent';
-                        return;
-                    }
-                    
-                    const randomIndex = Math.floor(Math.random() * 3);
-                    letter.style.color = colors[randomIndex];
+            let activeTimeout = null;
+
+            function showFullLeft() {
+                leftImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+                rightImage.style.clipPath = 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)';
+            }
+
+            function showFullRight() {
+                leftImage.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+                rightImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+            }
+
+            function resetView() {
+                leftImage.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
+                rightImage.style.clipPath = 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)';
+            }
+
+            // Event listeners using delegation where possible
+            if (leftHitbox && rightHitbox) {
+                leftHitbox.addEventListener('mouseenter', showFullLeft);
+                leftHitbox.addEventListener('mouseleave', resetView);
+                rightHitbox.addEventListener('mouseenter', showFullRight);
+                rightHitbox.addEventListener('mouseleave', resetView);
+
+                leftHitbox.addEventListener('click', () => {
+                    showFullLeft();
+                    if (activeTimeout) clearTimeout(activeTimeout);
+                    activeTimeout = setTimeout(resetView, 500);
+                });
+
+                rightHitbox.addEventListener('click', () => {
+                    showFullRight();
+                    if (activeTimeout) clearTimeout(activeTimeout);
+                    activeTimeout = setTimeout(resetView, 500);
                 });
             }
             
-            // Start animation
-            updateColors(); // Initial coloring
-            animationInterval = setInterval(updateColors, 500);
+            // Email copy functionality
+            const emailLink = document.querySelector('.email-link');
+            const notification = document.getElementById('copyNotification');
             
-            // Pause and change color on hover
-            nameElement.addEventListener('mouseenter', function() {
-                isHovered = true;
-                letters.forEach(letter => {
-                    if (letter.innerHTML === '&nbsp;') {
-                        letter.style.color = 'transparent';
-                        return;
-                    }
-                    letter.style.color = '#302B27';
+            if (emailLink) {
+                emailLink.addEventListener('click', function() {
+                    const email = "singamreddy.mayank@gmail.com";
+                    navigator.clipboard.writeText(email)
+                        .then(() => {
+                            notification.classList.add('show');
+                            setTimeout(() => {
+                                notification.classList.remove('show');
+                            }, 2000);
+                        })
+                        .catch(err => {
+                            console.error('Could not copy text: ', err);
+                        });
                 });
-            });
+            }
             
-            // Resume animation when not hovering
-            nameElement.addEventListener('mouseleave', function() {
-                isHovered = false;
-            });
-            
-            // Also handle click
-            nameElement.addEventListener('click', function() {
-                isHovered = true;
-                letters.forEach(letter => {
-                    if (letter.innerHTML === '&nbsp;') {
-                        letter.style.color = 'transparent';
-                        return;
-                    }
-                    letter.style.color = '#302B27';
+            // Animated name functionality
+            const nameElement = document.getElementById('animated-name');
+            if (nameElement) {
+                const originalText = nameElement.textContent;
+                
+                // Split the name into individual letter spans
+                nameElement.innerHTML = originalText.split('').map(letter => 
+                    letter === ' ' ? `<span>&nbsp;</span>` : `<span>${letter}</span>`
+                ).join('');
+                
+                const letters = nameElement.querySelectorAll('span');
+                const colors = ['#3597C7', '#F8C630', '#7FC6A4'];
+                let animationInterval;
+                let isHovered = false;
+                
+                function updateColors() {
+                    if (isHovered) return;
+                    
+                    letters.forEach(letter => {
+                        if (letter.innerHTML === '&nbsp;') {
+                            letter.style.color = 'transparent';
+                            return;
+                        }
+                        
+                        const randomIndex = Math.floor(Math.random() * colors.length);
+                        letter.style.color = colors[randomIndex];
+                    });
+                }
+                
+                // Start animation
+                updateColors();
+                animationInterval = setInterval(updateColors, 500);
+                
+                // Pause and change color on hover/click
+                nameElement.addEventListener('mouseenter', function() {
+                    isHovered = true;
+                    letters.forEach(letter => {
+                        if (letter.innerHTML === '&nbsp;') {
+                            letter.style.color = 'transparent';
+                            return;
+                        }
+                        letter.style.color = '#302B27';
+                    });
                 });
-            });
+                
+                nameElement.addEventListener('mouseleave', function() {
+                    isHovered = false;
+                });
+                
+                nameElement.addEventListener('click', function() {
+                    isHovered = true;
+                    letters.forEach(letter => {
+                        if (letter.innerHTML === '&nbsp;') {
+                            letter.style.color = 'transparent';
+                            return;
+                        }
+                        letter.style.color = '#302B27';
+                    });
+                });
+            }
         });
     </script>
 </body>
