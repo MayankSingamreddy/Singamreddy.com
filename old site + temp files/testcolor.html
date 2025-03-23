@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- update -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Singamreddy</title>
@@ -96,6 +95,8 @@
             --content-font-size: calc(var(--base-font-size) * 1.1);
             --social-font-size: calc(var(--base-font-size) * 0.9);
             --social-icon-size: calc(var(--base-font-size) * 1.2);
+            --pink: #ff1ead;
+            --cubic: cubic-bezier(0.64, 0.01, 0.07, 1.65);
         }
         
         body {
@@ -149,30 +150,55 @@
             gap: 22px;
         }
         
+        /* Enhanced nav links with fill effect and visible border */
         .nav a {
-            color: #777777;
-            text-decoration: underline;
+            color: #000000;
+            text-decoration: none;
             font-size: var(--nav-font-size);
             font-weight: 300;
+            transition: color 0.6s var(--cubic);
+            position: relative;
+            padding: 2px 8px;
+            border: 2px solid currentColor;
+            border-radius: 4px;
         }
         
-        .nav a:hover {
-            color: #3597c7;
+        .nav a::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 0%;
+            left: 0;
+            bottom: 0;
+            transition: all 0.6s 0.1s var(--cubic);
+            background-color: currentColor;
+            opacity: 0.15;
+            z-index: -1;
         }
         
-        /* New hover styles for specific links */
+        .nav a:hover::before {
+            height: 100%;
+        }
+        
+        /* Specific links in nav */
         .nav a[href="/Synergy"] {
-            color: #ff212e; /* Hover color for Join Forces */
-            text-decoration: underline;
-            font-weight: 300;
-            font-size: var(--nav-font-size);
+            color: #ff212e;
+            border-color: #ff212e;
+        }
+        
+        .nav a[href="/Synergy"]:hover {
+            color: #ff9097;
+            border-color: #ff9097;
         }
         
         .nav a[href="/Mystic"] {
-            color: #8A00C4; /* Hover color for Mystic */
-            font-weight: 300;
-            text-decoration: underline;
-            font-size: var(--nav-font-size);
+            color: #9D00FF;
+            border-color: #9D00FF;
+        }
+        
+        .nav a[href="/Mystic"]:hover {
+            color: #c580e2;
+            border-color: #c580e2;
         }
         
         /* Content paragraphs */
@@ -186,6 +212,71 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
+        }
+        
+        /* Enhanced content links with visible border and fill effect */
+        .content a {
+            color: #302B27;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.6s var(--cubic);
+            padding: 0px 6px;
+            z-index: 1;
+            border: 2px solid currentColor;
+            border-radius: 4px;
+            display: inline-block;
+            line-height: 1.2;
+        }
+        
+        .content a::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 0%;
+            left: 0;
+            bottom: 0;
+            transition: all 0.6s 0.2s var(--cubic);
+            background-color: currentColor;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .content a:hover::before {
+            height: 100%;
+        }
+        
+        /* Specific content links */
+        .content a[href="https://thecolorsofanime.com"] {
+            color: #8900ff;
+            font-weight: 400;
+            border-color: #8900ff;
+        }
+        
+        .content a[href="https://thecolorsofanime.com"]:hover {
+            color: #c480ff;
+            border-color: #c480ff;
+        }
+        
+        .content a[href="https://apps.apple.com/us/app/cheersphere/id6503993239"] {
+            color: #397b96;
+            font-weight: 400;
+            border-color: #397b96;
+        }
+        
+        .content a[href="https://apps.apple.com/us/app/cheersphere/id6503993239"]:hover {
+            color: #9cbdcb;
+            border-color: #9cbdcb;
+        }
+        
+        .content a[href="/Synergy"] {
+            color: #ff212e;
+            font-weight: 400;
+            border-color: #ff212e;
+        }
+        
+        .content a[href="/Synergy"]:hover {
+            color: #ff9097;
+            border-color: #ff9097;
         }
         
         /* Divider between content and social links */
@@ -211,13 +302,35 @@
             color: #767676;
         }
         
+        /* Enhanced social links with visible border and fill effect */
         .social-links a {
             text-decoration: none;
             color: #767676;
             font-size: var(--social-font-size);
             display: flex;
             align-items: center;
-            transition: color 0.3s ease;
+            transition: color 0.6s var(--cubic);
+            position: relative;
+            padding: 4px 8px;
+            z-index: 1;
+        }
+        
+        .social-links a::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 0%;
+            left: 0;
+            bottom: 0;
+            transition: all 0.6s 0.15s var(--cubic);
+            background-color: currentColor;
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 0; /* Remove border radius from fill */
+        }
+        
+        .social-links a:hover::before {
+            height: 100%;
         }
         
         /* Social icon styles */
@@ -227,16 +340,37 @@
             display: inline-flex;
             justify-content: center;
             color: inherit;
-            transition: color 0.3s ease;
+            transition: transform 0.3s var(--cubic);
+        }
+        
+        .social-links a:hover .social-icon {
+            transform: scale(1.2);
         }
 
-        /* Brand colors on hover */
-        .linkedin-link:hover { color: #0077B5 !important; }
-        .instagram-link:hover { color: #E1306C !important; }
-        .twitter-link:hover { color: #1DA1F2 !important; }
-        .github-link:hover { color: #333333 !important; }
+        /* Brand colors on hover with border color updates */
+        .linkedin-link:hover { 
+            color: #0077B5 !important; 
+            border-color: #0077B5 !important;
+        }
+        
+        .instagram-link:hover { 
+            color: #E1306C !important; 
+            border-color: #E1306C !important;
+        }
+        
+        .twitter-link:hover { 
+            color: #1DA1F2 !important; 
+            border-color: #1DA1F2 !important;
+        }
+        
+        .github-link:hover { 
+            color: #333333 !important; 
+            border-color: #333333 !important;
+        }
+        
         .email-link:hover { 
             color: #3597c7 !important;
+            border-color: #3597c7 !important;
             cursor: pointer;
         }
         
@@ -257,30 +391,6 @@
         
         .copy-notification.show {
             opacity: 1;
-        }
-        
-        /* Default link styling */
-        a {
-            color: #302B27;
-            text-decoration: underline;
-        }
-        
-        .content a:hover {
-            color: #3597c7;
-        }
-        
-        /* Color Diffusion Effect Styles */
-        .transition-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0;
-            backdrop-filter: blur(0px);
-            transition: opacity 0.7s ease, backdrop-filter 0.7s ease;
         }
         
         /* Responsive Design with dynamic font sizing */
@@ -323,6 +433,12 @@
             
             .content {
                 gap: 4px;
+            }
+            
+            /* Smaller borders on mobile */
+            .nav a, .content a, .social-links a {
+                border-width: 1px;
+                padding: 2px 4px;
             }
         }
         
@@ -399,6 +515,31 @@
             font-display: swap;
             src: local('Inter Regular'), local('Inter-Regular');
         }
+
+        /* Subtle flowing text animation */
+        @keyframes gentleFloat {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .flowing-text {
+            display: inline-block;
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+        
+        /* Staggered animation for each word to create a flowing effect */
+        .flowing-text:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        .flowing-text:nth-child(3) {
+            animation-delay: 1s;
+        }
+        
+        .flowing-text:nth-child(4) {
+            animation-delay: 1.5s;
+        }
     </style>
 </head>
 <body>
@@ -407,27 +548,27 @@
         <div class="name"><a href="https://singamreddy.com" id="animated-name">Mayank Singamreddy</a></div>
         
         <div class="nav">
-            <a href="/Synergy" class="transition-link" data-color="#ff212e">Synergy</a>
-            <a href="/Mystic" class="transition-link" data-color="#8A00C4">Mystic</a>
+            <a href="/Synergy">Synergy</a>
+            <a href="/Mystic">Mystic</a>
         </div>
     </div>
     
     <!-- Bio paragraphs -->
     <div class="content">
         <p style="font-style: italic;">
-            "More scrappy than brilliant."
+            "<span class="flowing-text">More</span> <span class="flowing-text">scrappy</span> <span class="flowing-text">than</span> <span class="flowing-text">brilliant.</span>"
+        </p>
+        
+        <p style="font-weight: 400;">
+            At <span class="flowing-text"><i class="fa-brands fa-meta" style="color: #0081FB; font-size: 20px;"></i></span> in SF making AI data products. Prev <span class="flowing-text"><i class="fa-brands fa-apple" style="color: #979797; font-size: 24px;"></i></span> handling GenAI.
         </p>
         
         <p>
-            At <i class="fa-brands fa-meta" style="color: #0081FB; font-size: 20px;"></i> in SF making data products with AI. Prev <i class="fa-brands fa-apple" style="color: #979797; font-size: 24px;"></i> handling GenAI.
+            Artist behind <a href="https://thecolorsofanime.com">TheColorsOfAnime</a> and <a href="https://apps.apple.com/us/app/cheersphere/id6503993239">CheerSphere</a> on the App Store.
         </p>
         
         <p>
-            Creator of <a href="https://thecolorsofanime.com" class="transition-link" data-color="#8900ff">The Colors Of Anime</a>, and <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" class="transition-link" data-color="#09a058">CheerSphere</a> for cheerleaders.
-        </p>
-        
-        <p>
-            Looking for my fellow creative technicals. <a href="/synergy.html" class="transition-link" data-color="#ff212e">Synergy</a> to see if we're compatible.
+            Looking for the others. <a href="/Synergy">Synergy</a> to see if we're compatible.
         </p>
     </div>
     
@@ -437,29 +578,23 @@
     <div class="social-links-container">
         <div class="social-links">
             <div>
-                <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link transition-link" data-color="#0077B5">
+                <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link">
                     <i class="fa-brands fa-linkedin social-icon"></i>
                     mayank-singamreddy
                 </a>
             </div>
             <div>
-                <a href="https://www.instagram.com/mayonkey/" class="instagram-link transition-link" data-color="#E1306C">
+                <a href="https://www.instagram.com/mayonkey/" class="instagram-link">
                     <i class="fa-brands fa-instagram social-icon"></i>
                     mayonkey
                 </a>
             </div>
             <div>
-                <a href="https://x.com/mayonkeyy" class="twitter-link transition-link" data-color="#1DA1F2">
+                <a href="https://x.com/mayonkeyy" class="twitter-link">
                     <i class="fa-brands fa-twitter social-icon"></i>
                     mayonkeyy
                 </a>
             </div>
-            <!-- <div>
-                <a href="https://github.com/MayankSingamreddy" class="github-link">
-                    <i class="fa-brands fa-github social-icon"></i>
-                    MayankSingamreddy
-                </a>
-            </div> -->
             <div>
                 <a class="email-link">
                     <i class="fa-solid fa-clone social-icon"></i>
@@ -486,9 +621,13 @@
         </div>
     </div>
     
-    <!-- JavaScript for the image slider and new transition effect -->
+    <!-- JavaScript for all interactions -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Remove any existing color overlays (fixes back button issue)
+            const existingOverlays = document.querySelectorAll('.color-diffusion-overlay');
+            existingOverlays.forEach(overlay => overlay.remove());
+            
             // Image slider functionality
             const imageContainer = document.querySelector('.image-circle-container');
             const leftImage = document.querySelector('.image-left');
@@ -532,6 +671,9 @@
                     activeTimeout = setTimeout(resetView, 500);
                 });
             }
+            
+            
+
             
             // Email copy functionality
             const emailLink = document.querySelector('.email-link');
@@ -613,38 +755,6 @@
                     });
                 });
             }
-            
-            // Color Diffusion Blur Effect
-            const transitionLinks = document.querySelectorAll('.transition-link');
-            
-            transitionLinks.forEach(link => {
-                link.addEventListener('click', function(event) {
-                    // Prevent default navigation
-                    event.preventDefault();
-                    
-                    // Get link destination and color
-                    const href = this.getAttribute('href');
-                    const linkColor = this.getAttribute('data-color') || '#3597c7';
-                    
-                    // Create overlay element for the effect
-                    const overlay = document.createElement('div');
-                    overlay.classList.add('transition-overlay');
-                    overlay.style.backgroundColor = linkColor;
-                    
-                    document.body.appendChild(overlay);
-                    
-                    // Trigger the effect
-                    setTimeout(() => {
-                        overlay.style.opacity = '0.9';
-                        overlay.style.backdropFilter = 'blur(10px)';
-                    }, 10);
-                    
-                    // Navigate after animation completes
-                    setTimeout(() => {
-                        window.location.href = href;
-                    }, 700);
-                });
-            });
         });
     </script>
 </body>
