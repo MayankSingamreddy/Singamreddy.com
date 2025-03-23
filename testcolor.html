@@ -269,6 +269,20 @@
             color: #3597c7;
         }
         
+        /* Color Diffusion Effect Styles */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            backdrop-filter: blur(0px);
+            transition: opacity 0.7s ease, backdrop-filter 0.7s ease;
+        }
+        
         /* Responsive Design with dynamic font sizing */
         /* Mobile/small screens */
         @media (max-width: 480px) {
@@ -393,8 +407,8 @@
         <div class="name"><a href="https://singamreddy.com" id="animated-name">Mayank Singamreddy</a></div>
         
         <div class="nav">
-            <a href="/Synergy">Synergy</a>
-            <a href="/Mystic">Mystic</a>
+            <a href="/Synergy" class="transition-link" data-color="#ff212e">Synergy</a>
+            <a href="/Mystic" class="transition-link" data-color="#8A00C4">Mystic</a>
         </div>
     </div>
     
@@ -409,11 +423,11 @@
         </p>
         
         <p>
-            Creator of <a href="https://thecolorsofanime.com" style="color: #8900ff; text-decoration: underline;font-weight: 400;">The Colors Of Anime</a>, and <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" style="color: #397b96; text-decoration: underline;font-weight: 400;">CheerSphere</a> for cheerleaders.
+            Creator of <a href="https://thecolorsofanime.com" class="transition-link" data-color="#8900ff">The Colors Of Anime</a>, and <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" class="transition-link" data-color="#09a058">CheerSphere</a> for cheerleaders.
         </p>
         
         <p>
-            Looking for my fellow creative technicals. <a href="/Synergy" style="text-decoration: underline; color: #ff212e;font-weight: 400;">Synergy</a> to see if we're compatible.
+            Looking for my fellow creative technicals. <a href="/synergy.html" class="transition-link" data-color="#ff212e">Synergy</a> to see if we're compatible.
         </p>
     </div>
     
@@ -423,19 +437,19 @@
     <div class="social-links-container">
         <div class="social-links">
             <div>
-                <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link">
+                <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link transition-link" data-color="#0077B5">
                     <i class="fa-brands fa-linkedin social-icon"></i>
                     mayank-singamreddy
                 </a>
             </div>
             <div>
-                <a href="https://www.instagram.com/mayonkey/" class="instagram-link">
+                <a href="https://www.instagram.com/mayonkey/" class="instagram-link transition-link" data-color="#E1306C">
                     <i class="fa-brands fa-instagram social-icon"></i>
                     mayonkey
                 </a>
             </div>
             <div>
-                <a href="https://x.com/mayonkeyy" class="twitter-link">
+                <a href="https://x.com/mayonkeyy" class="twitter-link transition-link" data-color="#1DA1F2">
                     <i class="fa-brands fa-twitter social-icon"></i>
                     mayonkeyy
                 </a>
@@ -472,7 +486,7 @@
         </div>
     </div>
     
-    <!-- JavaScript for the image slider -->
+    <!-- JavaScript for the image slider and new transition effect -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Image slider functionality
@@ -518,101 +532,6 @@
                     activeTimeout = setTimeout(resetView, 500);
                 });
             }
-            
-            // Color diffusion effect for hyperlinks
-            function createColorDiffusionEffect(event, linkColor) {
-              // Prevent immediate navigation
-              event.preventDefault();
-              
-              const href = this.getAttribute('href');
-              
-              // Create overlay element
-              const overlay = document.createElement('div');
-              overlay.style.position = 'fixed';
-              overlay.style.top = '0';
-              overlay.style.left = '0';
-              overlay.style.width = '100%';
-              overlay.style.height = '100%';
-              overlay.style.backgroundColor = linkColor;
-              overlay.style.opacity = '0';
-              overlay.style.zIndex = '9999';
-              overlay.style.pointerEvents = 'none';
-              overlay.style.backdropFilter = 'blur(0px)';
-              overlay.style.transition = 'opacity 0.7s ease, backdrop-filter 0.7s ease';
-              
-              document.body.appendChild(overlay);
-              
-              // Trigger the effect
-              setTimeout(() => {
-                overlay.style.opacity = '0.8';
-                overlay.style.backdropFilter = 'blur(10px)';
-              }, 10);
-              
-              // Navigate after animation completes
-              setTimeout(() => {
-                window.location.href = href;
-              }, 700);
-            }
-            
-            // Apply color diffusion effect to relevant links
-            const applyColorDiffusionToLinks = () => {
-                // Nav links
-                const synergyLink = document.querySelector('.nav a[href="/Synergy"]');
-                if (synergyLink) {
-                    synergyLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#ff212e');
-                    });
-                }
-                
-                const mysticLink = document.querySelector('.nav a[href="/Mystic"]');
-                if (mysticLink) {
-                    mysticLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#8A00C4');
-                    });
-                }
-                
-                // Content links
-                const colorOfAnimeLink = document.querySelector('a[href="https://thecolorsofanime.com"]');
-                if (colorOfAnimeLink) {
-                    colorOfAnimeLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#8900ff');
-                    });
-                }
-                
-                const cheerSphereLink = document.querySelector('a[href="https://apps.apple.com/us/app/cheersphere/id6503993239"]');
-                if (cheerSphereLink) {
-                    cheerSphereLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#397b96');
-                    });
-                }
-                
-                const contentSynergyLink = document.querySelector('a[href="/synergy.html"]');
-                if (contentSynergyLink) {
-                    contentSynergyLink.addEventListener('click', function(e) {
-                        createColorDiffusionEffect.call(this, e, '#ff212e');
-                    });
-                }
-                
-                // Social links with their brand colors
-                const socialLinks = {
-                    '.linkedin-link': '#0077B5',
-                    '.instagram-link': '#E1306C',
-                    '.twitter-link': '#1DA1F2',
-                    '.github-link': '#333333'
-                };
-                
-                Object.entries(socialLinks).forEach(([selector, color]) => {
-                    const link = document.querySelector(selector);
-                    if (link) {
-                        link.addEventListener('click', function(e) {
-                            createColorDiffusionEffect.call(this, e, color);
-                        });
-                    }
-                });
-            };
-            
-            // Call the function to apply effects
-            applyColorDiffusionToLinks();
             
             // Email copy functionality
             const emailLink = document.querySelector('.email-link');
@@ -694,6 +613,38 @@
                     });
                 });
             }
+            
+            // Color Diffusion Blur Effect
+            const transitionLinks = document.querySelectorAll('.transition-link');
+            
+            transitionLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    // Prevent default navigation
+                    event.preventDefault();
+                    
+                    // Get link destination and color
+                    const href = this.getAttribute('href');
+                    const linkColor = this.getAttribute('data-color') || '#3597c7';
+                    
+                    // Create overlay element for the effect
+                    const overlay = document.createElement('div');
+                    overlay.classList.add('transition-overlay');
+                    overlay.style.backgroundColor = linkColor;
+                    
+                    document.body.appendChild(overlay);
+                    
+                    // Trigger the effect
+                    setTimeout(() => {
+                        overlay.style.opacity = '0.9';
+                        overlay.style.backdropFilter = 'blur(10px)';
+                    }, 10);
+                    
+                    // Navigate after animation completes
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 700);
+                });
+            });
         });
     </script>
 </body>
