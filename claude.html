@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayank Singamreddy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        :root {
+            --bg-color: #f8f8f5;
+            --text-color: #121212;
+            --muted-color: #4a4a4a;
+            --line-color: #ddd;
+            --spacing: 5rem;
+            --transition-speed: 0.8s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 80px 30px;
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        /* Typography */
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            margin-bottom: var(--spacing);
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--line-color);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Links */
+        a {
+            color: var(--text-color);
+            text-decoration: underline;
+            text-decoration-thickness: 0.5px;
+            text-underline-offset: 2px;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.7;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: var(--spacing);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity var(--transition-speed), transform var(--transition-speed);
+            transition-delay: 0.1s;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Timeline element */
+        .timeline {
+            width: 1px;
+            background-color: var(--line-color);
+            height: 100px;
+            margin: 0 auto;
+            margin-bottom: var(--spacing);
+            opacity: 0.7;
+        }
+
+        /* Contact links */
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        /* Project item styling */
+        .project {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            font-weight: 500;
+        }
+
+        .project-description {
+            font-size: 0.95rem;
+            color: var(--muted-color);
+            margin-top: 0.5rem;
+        }
+
+        /* Experience item styling */
+        .experience {
+            margin-bottom: 1.8rem;
+        }
+
+        .company {
+            font-weight: 500;
+        }
+
+        .role {
+            color: var(--muted-color);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 60px 25px;
+                font-size: 15px;
+            }
+            
+            :root {
+                --spacing: 4rem;
+            }
+            
+            .timeline {
+                height: 80px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 40px 20px;
+            }
+            
+            :root {
+                --spacing: 3.5rem;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .timeline {
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Mayank Singamreddy</h1>
+
+    <div class="section" id="section-intro">
+        <p>I am a software engineer and entrepreneur who wants to create intelligent, human-centered technologies that push the boundaries of what's possible with AI.</p>
+    </div>
+
+    <div class="timeline"></div>
+
+    <div class="section" id="section-goals">
+        <h2>Entrepreneurial Vision</h2>
+        <p>I aim to build products that leverage AI to enhance human capabilities rather than replace them. My focus is on creating tools that augment creativity, streamline decision-making, and solve complex problems across various domains.</p>
+    </div>
+
+    <div class="timeline"></div>
+
+    <div class="section" id="section-projects">
+        <h2>Projects</h2>
+        
+        <div class="project">
+            <a href="http://thecolorsofanime.com/" target="_blank" class="project-title">The Colors of Anime</a>
+            <div class="project-description">A passion project exploring the color theory and visual language of anime, analyzing how different palettes evoke emotional responses and enhance storytelling.</div>
+        </div>
+        
+        <div class="project">
+            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" target="_blank" class="project-title">CheerSphere</a>
+            <div class="project-description">An iOS application I developed for cheerleaders to connect, share choreography, organize practices, and build community through a dedicated platform.</div>
+        </div>
+    </div>
+
+    <div class="timeline"></div>
+
+    <div class="section" id="section-experience">
+        <h2>Experience</h2>
+        
+        <div class="experience">
+            <div class="company">Meta</div>
+            <div class="role">Current position working on Agentic AI and generative AI applications for data exploration, focusing on creating intelligent systems that can autonomously discover insights within complex datasets.</div>
+        </div>
+        
+        <div class="experience">
+            <div class="company">Apple</div>
+            <div class="role">Former Software Engineer focused on generative AI applications, developing tools and solutions that leverage machine learning to enhance user experiences across Apple's ecosystem.</div>
+        </div>
+    </div>
+
+    <div class="timeline"></div>
+
+    <div class="section" id="section-contact">
+        <h2>Connect</h2>
+        <div class="contact-links">
+            <a href="mailto:singamreddy.mayank@gmail.com">Email</a>
+            <a href="https://www.linkedin.com/in/mayank-singamreddy/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/MayankSingamreddy" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll reveal animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            function checkVisibility() {
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                    
+                    if (rect.top <= windowHeight * 0.85) {
+                        section.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Check visibility on load
+            checkVisibility();
+            
+            // Check visibility on scroll
+            window.addEventListener('scroll', checkVisibility);
+        });
+    </script>
+</body>
+</html>
