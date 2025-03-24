@@ -525,9 +525,6 @@
     <!-- JavaScript for the image slider -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Remove any existing color overlays (fixes back button issue)
-            const existingOverlays = document.querySelectorAll('.color-diffusion-overlay');
-            existingOverlays.forEach(overlay => overlay.remove());
             
             // Image slider functionality
             const imageContainer = document.querySelector('.image-circle-container');
