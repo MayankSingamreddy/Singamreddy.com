@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://singamreddy.com/sitemap.xml 
