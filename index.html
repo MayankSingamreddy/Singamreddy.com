@@ -303,16 +303,17 @@
             }
             
             .social-links-container {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: flex-start;
+                gap: 20px;
             }
             
             .image-circle-container {
                 margin-right: 0;
-                margin-top: 2em;
-                align-self: center;
-                width: 100px;
-                height: 100px;
+                margin-top: 0;
+                flex-shrink: 0;
+                width: 80px;
+                height: 80px;
             }
             
             .header {
@@ -336,6 +337,30 @@
             .content {
                 gap: 4px;
             }
+            
+            /* Portfolio responsive styles for mobile */
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .project-card {
+                padding: 16px;
+            }
+            
+            .project-content {
+                gap: 6px;
+            }
+            
+            .project-tags {
+                gap: 4px;
+            }
+            
+            .project-title {
+                font-size: calc(var(--content-font-size) * 0.95);
+                line-height: 1.1;
+                word-break: break-word;
+            }
         }
         
         /* Tablet screens */
@@ -345,20 +370,31 @@
             }
             
             .social-links-container {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: flex-start;
+                gap: 30px;
             }
             
             .image-circle-container {
                 margin-right: 0;
-                margin-top: 2em;
-                align-self: center;
+                margin-top: 0;
+                flex-shrink: 0;
                 width: 110px;
                 height: 110px;
             }
             
             body {
                 padding: 4vh 18px;
+            }
+            
+            /* Portfolio responsive styles for tablet */
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            
+            .project-card {
+                padding: 18px;
             }
         }
 
@@ -382,9 +418,13 @@
                 --base-font-size: 2.8vw;
             }
             
+            .social-links-container {
+                gap: 15px;
+            }
+            
             .image-circle-container {
-                width: 90px;
-                height: 90px;
+                width: 70px;
+                height: 70px;
             }
             
             body {
@@ -393,6 +433,11 @@
             
             .social-icon {
                 width: 30px;
+            }
+            
+            .project-title {
+                font-size: calc(var(--content-font-size) * 0.9);
+                line-height: 1.05;
             }
         }
 
@@ -436,61 +481,202 @@
         .flowing-text:nth-child(4) {
             animation-delay: 1.5s;
         }
+
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            margin: 0;
+            padding: 0;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 0;
+        }
+
+        .project-card {
+            background: transparent;
+            border: 2px solid var(--project-color, #767676);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: var(--project-color, #767676);
+            transition: left 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            left: 0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .project-content {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .project-title {
+            font-size: var(--content-font-size);
+            font-weight: 400;
+            margin: 0;
+            color: #000000;
+            transition: color 0.2s ease;
+            text-decoration: underline;
+            text-decoration-color: var(--project-color, #767676);
+            text-underline-offset: 3px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+            line-height: 1.2;
+        }
+
+        .project-card:hover .project-title {
+            color: var(--project-color, #767676);
+        }
+
+        .project-description {
+            font-size: calc(var(--content-font-size) * 0.9);
+            font-weight: 300;
+            color: #767676;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 4px 0;
+        }
+
+        .tag {
+            font-size: calc(var(--content-font-size) * 0.8);
+            font-weight: 300;
+            color: #999999;
+            background: #f8f8f8;
+            padding: 2px 8px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .project-card:hover .tag {
+            background: var(--project-color, #767676);
+            color: white;
+        }
+
+        /* Dynamic color assignment via CSS custom properties */
+        .project-card[data-color="#8900ff"] {
+            --project-color: #8900ff;
+        }
+
+        .project-card[data-color="#397b96"] {
+            --project-color: #397b96;
+        }
+
+        .project-card[data-color="#ff212e"] {
+            --project-color: #ff212e;
+        }
+
+        .project-card[data-color="#3597c7"] {
+            --project-color: #3597c7;
+        }
+
+        .project-card[data-color="#9D00FF"] {
+            --project-color: #9D00FF;
+        }
+
+        .project-card[data-color="#F8C630"] {
+            --project-color: #F8C630;
+        }
+
+        .project-card[data-color="#7FC6A4"] {
+            --project-color: #7FC6A4;
+        }
+
+        .project-card[data-color="#E67E22"] {
+            --project-color: #E67E22;
+        }
+
+        /* Animation for staggered card appearance */
+        .project-card {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: cardFadeIn 0.6s ease forwards;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.1s; }
+        .project-card:nth-child(2) { animation-delay: 0.2s; }
+        .project-card:nth-child(3) { animation-delay: 0.3s; }
+        .project-card:nth-child(4) { animation-delay: 0.4s; }
+        .project-card:nth-child(5) { animation-delay: 0.5s; }
+        .project-card:nth-child(6) { animation-delay: 0.6s; }
+        .project-card:nth-child(7) { animation-delay: 0.7s; }
+        .project-card:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
     </style>
 </head>
 <body>
     <!-- Header with name and navigation -->
     <div class="header">
-        <div class="name"><a href="https://singamreddy.com" id="animated-name">Mayank Singamreddy</a></div>
+        <div class="name"><a href="https://singamreddy.com" id="animated-name" target="_blank" rel="noopener noreferrer">Mayank Singamreddy</a></div>
         
         <div class="nav">
-            <a href="/Mystic">Mysticism</a>
+            <a href="/Mystic" target="_blank" rel="noopener noreferrer">Mysticism</a>
         </div>
     </div>
     
-    <!-- Bio paragraphs -->
-    <div class="content">
-        <p style="font-style: italic;">
-            "Trying <span class="flowing-text">everything</span> I can think of."
-        </p>
-        
-        <p style="font-weight: 400;">
-            In SF making agents at <span class="flowing-text"><i class="fa-brands fa-meta" style="color: #0081FB; font-size: 20px;"></i></span>. Prev <span class="flowing-text"><i class="fa-brands fa-apple" style="color: #979797; font-size: 24px;"></i></span> handling GenAI.
-        </p>
-        
-        <p>
-            Artist of <a href="https://thecolorsofanime.com" style="color: #8900ff; text-decoration: underline;">TheColorsOfAnime</a> and <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" style="color: #397b96; text-decoration: underline;">CheerSphere</a> on the App Store.
-        </p>
-        
-
-    </div>
-    
-    <div class="divider"></div>
     
     <!-- Social media links and image slider -->
     <div class="social-links-container">
         <div class="social-links">
             <div>
-                <a href="https://x.com/mayonkeyy" class="twitter-link">
+                <a href="https://x.com/mayonkeyy" class="twitter-link" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-twitter social-icon"></i>
                     mayonkeyy
                 </a>
             </div>
             <div>
-                <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link">
+                <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-linkedin social-icon"></i>
                     mayank-singamreddy
                 </a>
             </div>
             <div>
-                <a href="https://www.instagram.com/mayonkey/" class="instagram-link">
+                <a href="https://www.instagram.com/mayonkey/" class="instagram-link" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-instagram social-icon"></i>
                     mayonkey
                 </a>
             </div>
             
             <div>
-                <a href="https://github.com/MayankSingamreddy" class="github-link">
+                <a href="https://github.com/MayankSingamreddy" class="github-link" target="_blank" rel="noopener noreferrer">
                     <i class="fa-brands fa-github social-icon"></i>
                     MayankSingamreddy
                 </a>
@@ -518,6 +704,124 @@
             <div class="image-wrapper image-right">
                 <img src="images/goodface.png" alt="Second image">
             </div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <!-- Bio paragraphs -->
+    <div class="content">
+        <p style="font-style: italic;">
+            "Probably off validating <span class="flowing-text">something</span> right now"
+        </p>
+        
+        <p style="font-weight: 400;">
+            In SF making agents at <span class="flowing-text"><i class="fa-brands fa-meta" style="color: #0081FB; font-size: 20px;"></i></span>. Prev <span class="flowing-text"><i class="fa-brands fa-apple" style="color: #979797; font-size: 24px;"></i></span> handling GenAI.
+        </p>
+        
+    </div>
+
+    
+    <div class="divider"></div>
+    
+    <!-- Portfolio Section -->
+    <div class="portfolio-section">
+        <div class="portfolio-grid">
+            <a href="http://thecolorsofanime.com" class="project-card" data-color="#8900ff" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">TheColorsOfAnime.com</h3>
+                    <p class="project-description">Fully automated video processing pipeline and Shopify storefront that takes the progression of color in an animation and layers it to produce a unique "barcode" of the entire movie</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">JS</span>
+                        <span class="tag">Shopify</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://getapp.cc/app/6503993239" class="project-card" data-color="#397b96" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">CheerSphere iOS App</h3>
+                    <p class="project-description">My co-founder was head cheerleader at Rutgers University who noticed a gap in the market between aspiring students in the Cheer world and programs meant for them. Cheer-specific marketplace.</p>
+                    <div class="project-tags">
+                        <span class="tag">Swift</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">iOS</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" class="project-card" data-color="#ff212e" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">Let Me Check First</h3>
+                    <p class="project-description">Developed a keyboard recorder that captures a user's LLM prompts, sends them to Ollama for prompt-engineering, and inserts the engineered response back in-line.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">LLM</span>
+                        <span class="tag">Automation</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://www.skinnyfeels.app/" class="project-card" data-color="#7FC6A4" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">SkinnyFeels.app</h3>
+                    <p class="project-description">Nano Banana takes an image of your body and visualize a complete body composition chart of how you would look at various body fat percentages.</p>
+                    <div class="project-tags">
+                        <span class="tag">TypeScript</span>
+                        <span class="tag">Next.js</span>
+                        <span class="tag">Vercel</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/MayankSingamreddy/CameraControl" class="project-card" data-color="#9D00FF" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">Camera-Control</h3>
+                    <p class="project-description">Service can be used to either turn hand gestures from the webcam into a virtual usable mouse or to control live music options.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MediaPipe</span>
+                        <span class="tag">Computer Vision</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/MayankSingamreddy/PrettyPapers" class="project-card" data-color="#F8C630" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">Pretty-Papers</h3>
+                    <p class="project-description">An overlay tool that adds beautiful wallpapers to research paper PDFs to make the reading experience much less monotonous.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">PDF</span>
+                        <span class="tag">Design</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://youtu.be/fIL7X-HVAWI" class="project-card" data-color="#3597c7" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">FairestMirror.com</h3>
+                    <p class="project-description">Calculate numeric beauty metrics using a MediaPipe pretrained model + OpenCV to generate facial meshes.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">MediaPipe</span>
+                        <span class="tag">FastAPI</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="https://github.com/MayankSingamreddy/FindDomains" class="project-card" data-color="#E67E22" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">FindDomains</h3>
+                    <p class="project-description">Script for discovering available .com domain names using English words of a specified length. Uses RDAP protocol to checks domain availability and outputs results to both the console and a text file.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">RDAP</span>
+                        <span class="tag">Multi-threading</span>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
     
