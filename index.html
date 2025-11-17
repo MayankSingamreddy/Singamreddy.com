@@ -605,6 +605,10 @@
             --project-color: #E67E22;
         }
 
+        .project-card[data-color="#FF1493"] {
+            --project-color: #FF1493;
+        }
+
         /* Animation for staggered card appearance */
         .project-card {
             opacity: 0;
@@ -706,6 +710,18 @@
     <!-- Portfolio Section -->
     <div class="portfolio-section">
         <div class="portfolio-grid">
+            <a href="https://trycravr.com" class="project-card" data-color="#FF1493" target="_blank" rel="noopener noreferrer">
+                <div class="project-content">
+                    <h3 class="project-title">Cravr</h3>
+                    <p class="project-description">A food discovery iOS app which lets you search for food, not where to eat it.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Supabase</span>
+                    </div>
+                </div>
+            </a>
+            
             <a href="http://thecolorsofanime.com" class="project-card" data-color="#8900ff" target="_blank" rel="noopener noreferrer">
                 <div class="project-content">
                     <h3 class="project-title">TheColorsOfAnime.com</h3>
@@ -731,7 +747,7 @@
                 </div>
             </a>
             
-            <a href="https://getapp.cc/app/6503993239" class="project-card" data-color="#397b96" target="_blank" rel="noopener noreferrer">
+            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" class="project-card" data-color="#397b96" target="_blank" rel="noopener noreferrer">
                 <div class="project-content">
                     <h3 class="project-title">CheerSphere iOS App</h3>
                     <p class="project-description">Cheer-specific marketplace. My co-founder was head cheerleader at Rutgers University who noticed a gap in the market.</p>
