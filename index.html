@@ -255,29 +255,6 @@
         .instagram-link:hover { color: #E1306C !important; }
         .twitter-link:hover { color: #1DA1F2 !important; }
         .github-link:hover { color: #333333 !important; }
-        .email-link:hover { 
-            color: #3597c7 !important;
-            cursor: pointer;
-        }
-        
-        /* Copy notification styles */
-        .copy-notification {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .copy-notification.show {
-            opacity: 1;
-        }
         
         /* Default link styling */
         a {
@@ -692,16 +669,7 @@
                     MayankSingamreddy
                 </a>
             </div>
-            <div>
-                <a class="email-link">
-                    <i class="fa-solid fa-clone social-icon"></i>
-                    singamreddy.mayank@gmail.com
-                </a>
-            </div>
         </div>
-        
-        <!-- Notification for email copy -->
-        <div id="copyNotification" class="copy-notification">Email copied to clipboard!</div>
         
         <!-- Image Circle Slider -->
         <div class="image-circle-container">
@@ -894,26 +862,6 @@
                     showFullRight();
                     if (activeTimeout) clearTimeout(activeTimeout);
                     activeTimeout = setTimeout(resetView, 500);
-                });
-            }
-            
-            // Email copy functionality
-            const emailLink = document.querySelector('.email-link');
-            const notification = document.getElementById('copyNotification');
-            
-            if (emailLink) {
-                emailLink.addEventListener('click', function() {
-                    const email = "singamreddy.mayank@gmail.com";
-                    navigator.clipboard.writeText(email)
-                        .then(() => {
-                            notification.classList.add('show');
-                            setTimeout(() => {
-                                notification.classList.remove('show');
-                            }, 2000);
-                        })
-                        .catch(err => {
-                            console.error('Could not copy text: ', err);
-                        });
                 });
             }
             
