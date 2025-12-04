@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- update -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Singamreddy</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta name="description" content="Based in SF. Working at Meta on AI data products. Previously at Apple handling GenAI. Artist of TheColorsOfAnime and CheerSphere.">
+    
     <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-7VE19FMYZW"></script>
     <script>
@@ -15,1311 +15,144 @@
       gtag('js', new Date());
       gtag('config', 'G-7VE19FMYZW', { 'send_page_view': true });
     </script>
-    <!-- Google Fonts - Inter font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="images/twitterpfp.jpg" as="image">
-    <link rel="preload" href="images/goodface.png" as="image">
+
     <style>
-        /* Fade-in animation for page elements */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Image Circle Slider Styles */
-        .image-circle-container {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            overflow: hidden;
-            margin-right: 3em;
-            flex-shrink: 0;
-        }
-
-        .image-wrapper {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            transition: clip-path 0.5s ease;
-        }
-
-        .image-left {
-            left: 0;
-            z-index: 1;
-            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
-        }
-
-        .image-right {
-            right: 0;
-            z-index: 1;
-            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-        }
-
-        .image-wrapper img {
-            position: absolute;
-            height: 100%;
-            width: auto;
-            max-width: none;
-            top: 0;
-        }
-
-        .image-left img {
-            left: 0;
-        }
-
-        .image-right img {
-            right: 0;
-        }
-        
-        /* Add hitboxes for better interaction */
-        .left-hitbox, .right-hitbox {
-            position: absolute;
-            width: 50%;
-            height: 100%;
-            top: 0;
-            z-index: 2;
-            cursor: pointer;
-        }
-        
-        .left-hitbox {
-            left: 0;
-        }
-        
-        .right-hitbox {
-            right: 0;
-        }
-        
-        /* Base styles with viewport-relative font sizing */
-        :root {
-            --base-font-size: 1vw;
-            --name-font-size: calc(var(--base-font-size) * 1.4);
-            --nav-font-size: calc(var(--base-font-size) * 1.4);
-            --content-font-size: calc(var(--base-font-size) * 1.1);
-            --social-font-size: calc(var(--base-font-size) * 0.9);
-            --social-icon-size: calc(var(--base-font-size) * 1.2);
-        }
-        
         body {
-            font-family: "Inter", sans-serif;
-            color: black;
+            font-family: sans-serif;
             max-width: 650px;
             margin: 0 auto;
-            padding: 5vh 20px 8vh 20px;
-            background-color: white;
-            font-size: var(--content-font-size);
-            font-weight: 300;
-            animation: fadeIn 1s ease-in-out;
-            line-height: 1.4;
-            position: relative;
+            padding: 40px 20px;
+            line-height: 1.6;
+            color: #333;
         }
         
-        /* Header section with name and navigation */
-        .header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            padding: 15px 0;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        .name {
-            font-size: calc(var(--name-font-size) * 1.2);
-            font-weight: 400;
-            max-width: 100%;
-            word-wrap: break-word;
-            letter-spacing: -0.02em;
-        }
-        
-        .name a {
-            color: #3597c7;
-            text-decoration: none;
-        }
-        
-        .name a:hover {
-            color: #767676;
-        }
-        
-        /* New CSS for the animated name spans */
-        .name a span {
-            display: inline-block;
-            transition: color 0.2s;
-        }
-        
-        /* Navigation menu */
-        .nav {
-            display: flex;
-            gap: 22px;
-        }
-        
-        .nav a {
-            color: #000000;
-            text-decoration: underline;
-            font-size: var(--nav-font-size);
-            font-weight: 300;
-            transition: color 0.2s ease;
-        }
-        
-        .nav a:hover {
-            color: #b8b8b8;
-        }
-        
-        /* New hover styles for specific links */
-        .nav a[href="/Collab"] {
-            color: #ff212e;
-            text-decoration: underline;
-            font-weight: 300;
-            font-size: var(--nav-font-size);
-        }
-        
-        .nav a[href="/Collab"]:hover {
-            color: #ff9097;
-        }
-        
-        .nav a[href="/Mystic"] {
-            color: #9D00FF;
-            font-weight: 300;
-            text-decoration: underline;
-            font-size: var(--nav-font-size);
-        }
-        
-        .nav a[href="/Mystic"]:hover {
-            color: #c580e2;
-        }
-        
-        /* Content paragraphs */
-        p {
-            margin-bottom: 0px;
-            line-height: 1.5em;
-            font-size: var(--content-font-size);
-        }
-        
-        .content {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .content p {
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards;
-        }
-        
-        .content p:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-        
-        .content p:nth-child(2) {
-            animation-delay: 0.3s;
-        }
-        
-        /* Divider between content and social links */
-        .divider {
-            height: 2px;
-            width: 0%;
-            align-self: center;
-            background-color: #ebecec;
-            margin: 40px auto;
-            animation: dividerGrow 0.8s ease forwards 0.4s;
+        header {
+            margin-bottom: 40px;
         }
 
-        @keyframes dividerGrow {
-            to {
-                width: 90%;
-            }
-        }
-        
-        /* Social media links section */
-        .social-links-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards 0.1s;
-        }
-        
-        .social-links {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            padding: 15px 0;
-            font-weight: 300;
-            color: #767676;
-        }
-        
-        .social-links > div {
-            opacity: 0;
-            animation: fadeIn 0.6s ease forwards;
-        }
-        
-        .social-links > div:nth-child(1) { animation-delay: 0.2s; }
-        .social-links > div:nth-child(2) { animation-delay: 0.3s; }
-        .social-links > div:nth-child(3) { animation-delay: 0.4s; }
-        .social-links > div:nth-child(4) { animation-delay: 0.5s; }
-        
-        .social-links a {
-            text-decoration: none;
-            color: #767676;
-            font-size: var(--social-font-size);
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-            padding: 4px 0;
-        }
-        
-        .social-links a:hover {
-            transform: translateX(5px);
-        }
-        
-        /* Social icon styles */
-        .social-icon {
-            width: 36px;
-            font-size: var(--social-icon-size);
-            display: inline-flex;
-            justify-content: center;
-            color: inherit;
-            transition: color 0.3s ease;
-        }
-
-        /* Brand colors on hover */
-        .linkedin-link:hover { color: #0077B5 !important; }
-        .instagram-link:hover { color: #E1306C !important; }
-        .twitter-link:hover { color: #1DA1F2 !important; }
-        .github-link:hover { color: #333333 !important; }
-        
-        /* Default link styling */
-        a {
-            color: #302B27;
-            text-decoration: underline;
-            transition: color 0.2s ease;
-        }
-        
-        .content a:hover {
-            color: #7a7772;
-        }
-        
-        /* Hover effects for specific bio links */
-        .content a[href="https://thecolorsofanime.com"]:hover {
-            color: #c480ff !important;
-        }
-        
-        .content a[href="https://apps.apple.com/us/app/cheersphere/id6503993239"]:hover {
-            color: #9cbdcb !important;
-        }
-        
-        .content a[href="/Collab"]:hover {
-            color: #ff9097 !important;
-        }
-        
-        /* Responsive Design with dynamic font sizing */
-        /* Mobile/small screens */
-        @media (max-width: 480px) {
-            :root {
-                --base-font-size: 3.2vw;
-            }
-            
-            .social-links-container {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 15px;
-            }
-            
-            .image-circle-container {
-                margin-right: 0;
-                margin-left: -5px;
-                margin-top: 0;
-                flex-shrink: 0;
-                width: min(28vw, 110px);
-                height: min(28vw, 110px);
-            }
-            
-            .header {
-                flex-wrap: wrap;
-                row-gap: 8px;
-                margin-bottom: 15px;
-            }
-            
-            .name {
-                margin-right: auto;
-            }
-            
-            .nav {
-                margin-left: auto;
-            }
-            
-            body {
-                padding: 3vh 15px;
-                line-height: 1.4;
-            }
-            
-            .content {
-                gap: 10px;
-            }
-            
-            .divider {
-                margin: 30px auto;
-            }
-            
-            .section-header {
-                margin-bottom: 15px;
-            }
-            
-            /* Portfolio responsive styles for mobile */
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 14px;
-            }
-            
-            .project-card {
-                padding: 18px;
-            }
-            
-            .project-content {
-                gap: 8px;
-            }
-            
-            .project-tags {
-                gap: 5px;
-            }
-            
-            .project-title {
-                font-size: calc(var(--content-font-size) * 0.95);
-                line-height: 1.2;
-                word-break: break-word;
-            }
-        }
-        
-        /* Tablet screens */
-        @media (min-width: 481px) and (max-width: 768px) {
-            :root {
-                --base-font-size: 2.2vw;
-            }
-            
-            .social-links-container {
-                flex-direction: row;
-                align-items: flex-start;
-                gap: 25px;
-            }
-            
-            .image-circle-container {
-                margin-right: 0;
-                margin-left: -5px;
-                margin-top: 0;
-                flex-shrink: 0;
-                width: min(22vw, 130px);
-                height: min(22vw, 130px);
-            }
-            
-            body {
-                padding: 4vh 18px;
-            }
-            
-            /* Portfolio responsive styles for tablet */
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-            
-            .project-card {
-                padding: 18px;
-            }
-        }
-
-        /* Desktop screens - set a base size that works well */
-        @media (min-width: 769px) and (max-width: 1200px) {
-            :root {
-                --base-font-size: 1.5vw;
-            }
-            
-            .portfolio-grid {
-                gap: 20px;
-            }
-        }
-        
-        /* Large desktop screens - prevent text from becoming too large */
-        @media (min-width: 1201px) {
-            :root {
-                --base-font-size: 18px;
-            }
-            
-            .portfolio-grid {
-                gap: 22px;
-            }
-        }
-
-        /* Smaller phones */
-        @media (max-width: 375px) {
-            :root {
-                --base-font-size: 2.8vw;
-            }
-            
-            .social-links-container {
-                gap: 10px;
-            }
-            
-            .image-circle-container {
-                margin-left: -5px;
-                width: min(25vw, 95px);
-                height: min(25vw, 95px);
-            }
-            
-            body {
-                padding: 2vh 12px;
-            }
-            
-            .social-icon {
-                width: 30px;
-            }
-            
-            .project-title {
-                font-size: calc(var(--content-font-size) * 0.9);
-                line-height: 1.05;
-            }
-        }
-
-        /* Font display swap to avoid FOIT */
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 300;
-            font-display: swap;
-            src: local('Inter Light'), local('Inter-Light');
-        }
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Inter Regular'), local('Inter-Regular');
-        }
-
-        /* Subtle flowing text animation */
-        @keyframes gentleFloat {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .flowing-text {
-            display: inline-block;
-            animation: gentleFloat 3s ease-in-out infinite;
-        }
-        
-        /* Staggered animation for each word to create a flowing effect */
-        .flowing-text:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-        
-        .flowing-text:nth-child(3) {
-            animation-delay: 1s;
-        }
-        
-        .flowing-text:nth-child(4) {
-            animation-delay: 1.5s;
-        }
-
-        /* Section Headers */
-        .section-header {
-            font-size: calc(var(--content-font-size) * 1.15);
-            font-weight: 400;
-            margin-bottom: 25px;
-            color: #000000;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            opacity: 0;
-            animation: fadeIn 0.8s ease forwards 0.5s;
-        }
-
-        .section-header::before {
-            content: '';
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #3597c7, #F8C630);
-            display: inline-block;
-            animation: lineGrow 0.8s ease forwards 0.7s;
-        }
-
-        @keyframes lineGrow {
-            to {
-                width: 35px;
-            }
-        }
-
-        /* Portfolio Section Styles */
-        .portfolio-section {
-            margin: 0;
-            padding: 0;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 18px;
-            margin: 0;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid var(--project-color, #767676);
-            border-radius: 12px;
-            padding: 24px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            color: inherit;
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
             display: block;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 3px;
-            background: var(--project-color, #767676);
-            transition: left 0.3s ease;
-            z-index: 1;
+        h1 {
+            font-size: 2em;
+            margin: 0 0 10px 0;
+            font-weight: bold;
         }
 
-        .project-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, transparent 0%, var(--project-color) 100%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
-            mix-blend-mode: multiply;
-            opacity: 0.02;
+        a {
+            color: #0066cc;
+            text-decoration: none;
         }
 
-        .project-card:hover::before {
-            left: 0;
+        a:hover {
+            text-decoration: underline;
         }
 
-        .project-card:hover::after {
-            opacity: 0.04;
+        .social-links {
+            margin-bottom: 30px;
         }
 
-        .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-            border-width: 3px;
+        .social-links a {
+            margin-right: 15px;
         }
 
-        .project-content {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            position: relative;
-            z-index: 2;
+        .bio {
+            margin-bottom: 40px;
+        }
+
+        .projects h2 {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .project-item {
+            margin-bottom: 25px;
         }
 
         .project-title {
-            font-size: calc(var(--content-font-size) * 1.05);
-            font-weight: 400;
-            margin: 0;
-            color: #000000;
-            transition: color 0.2s ease;
-            text-decoration: underline;
-            text-decoration-color: var(--project-color, #767676);
-            text-underline-offset: 4px;
-            text-decoration-thickness: 2px;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-            line-height: 1.3;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
         }
-
-        .project-card:hover .project-title {
-            color: var(--project-color, #767676);
-        }
-
-        .project-description {
-            font-size: calc(var(--content-font-size) * 0.92);
-            font-weight: 300;
-            color: #666666;
-            margin: 0;
-            line-height: 1.45;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 7px;
-            margin-top: 6px;
-        }
-
-        .tag {
-            font-size: calc(var(--content-font-size) * 0.78);
-            font-weight: 300;
-            color: #888888;
-            background: #f5f5f5;
-            padding: 4px 10px;
-            border-radius: 14px;
-            transition: all 0.3s ease;
-            border: 1px solid transparent;
-        }
-
-        .project-card:hover .tag {
-            background: var(--project-color, #767676);
-            color: white;
-            border-color: var(--project-color, #767676);
-            transform: translateY(-1px);
-        }
-
-        /* Dynamic color assignment via CSS custom properties */
-        .project-card[data-color="#8900ff"] {
-            --project-color: #8900ff;
-        }
-
-        .project-card[data-color="#397b96"] {
-            --project-color: #397b96;
-        }
-
-        .project-card[data-color="#ff212e"] {
-            --project-color: #ff212e;
-        }
-
-        .project-card[data-color="#3597c7"] {
-            --project-color: #3597c7;
-        }
-
-        .project-card[data-color="#9D00FF"] {
-            --project-color: #9D00FF;
-        }
-
-        .project-card[data-color="#F8C630"] {
-            --project-color: #F8C630;
-        }
-
-        .project-card[data-color="#7FC6A4"] {
-            --project-color: #7FC6A4;
-        }
-
-        .project-card[data-color="#E67E22"] {
-            --project-color: #E67E22;
-        }
-
-        .project-card[data-color="#FF1493"] {
-            --project-color: #FF1493;
-        }
-
-        /* Animation for staggered card appearance */
-        .project-card {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: cardFadeIn 0.6s ease forwards;
-        }
-
-        .project-card:nth-child(1) { animation-delay: 0.1s; }
-        .project-card:nth-child(2) { animation-delay: 0.2s; }
-        .project-card:nth-child(3) { animation-delay: 0.3s; }
-        .project-card:nth-child(4) { animation-delay: 0.4s; }
-        .project-card:nth-child(5) { animation-delay: 0.5s; }
-        .project-card:nth-child(6) { animation-delay: 0.6s; }
-        .project-card:nth-child(7) { animation-delay: 0.7s; }
-        .project-card:nth-child(8) { animation-delay: 0.8s; }
-
-        @keyframes cardFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Playful cursor trail effect */
-        .cursor-trail {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-        }
-
-        /* Sparkle effect on project card hover */
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0;
-                transform: scale(0) rotate(0deg);
-            }
-            50% { 
-                opacity: 1;
-                transform: scale(1) rotate(180deg);
-            }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: var(--project-color, #767676);
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            pointer-events: none;
-            animation: sparkle 0.6s ease-out forwards;
-        }
-
-        /* Subtle background gradient animation */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                45deg,
-                rgba(53, 151, 199, 0.02) 0%,
-                rgba(248, 198, 48, 0.02) 25%,
-                rgba(127, 198, 164, 0.02) 50%,
-                rgba(137, 0, 255, 0.02) 75%,
-                rgba(53, 151, 199, 0.02) 100%
-            );
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Emoji reactions on paragraph hover */
-        .emoji-pop {
-            display: inline-block;
-            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        .emoji-pop:hover {
-            transform: scale(1.4) rotate(10deg);
-        }
-
-        /* Enhanced divider with subtle animation */
-        .divider {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .divider::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, var(--project-color, #3597c7), transparent);
-            animation: dividerShimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes dividerShimmer {
-            0%, 100% { left: -100%; }
-            50% { left: 100%; }
-        }
-
-        /* Playful bounce on social icon hover */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .social-links a:hover .social-icon {
-            animation: bounce 0.5s ease;
-        }
-
-        /* Image circle glow effect on interaction */
-        .image-circle-container {
-            box-shadow: 0 0 0 rgba(53, 151, 199, 0);
-            transition: box-shadow 0.3s ease;
-        }
-
-        .image-circle-container:hover {
-            box-shadow: 0 0 20px rgba(53, 151, 199, 0.3);
-        }
-
-        /* Confetti burst on name click */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        @keyframes confettiFall {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        /* Project card tilt effect */
-        .project-card {
-            transform-style: preserve-3d;
-            transition: all 0.3s ease, transform 0.1s ease;
-        }
-
-        /* Wavy underline for links */
-        @keyframes wave {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(100%); }
-        }
-
-        .content a {
-            position: relative;
-            display: inline-block;
-        }
-
-        .content a::after {
-            content: '~';
-            position: absolute;
-            left: 0;
-            bottom: -2px;
-            color: var(--link-color, #302B27);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            animation: wave 1s ease-in-out infinite;
-        }
-
-        .content a:hover::after {
-            opacity: 0.3;
-        }
-
     </style>
 </head>
 <body>
-    <!-- Header with name and navigation -->
-    <div class="header">
-        <div class="name"><a href="https://singamreddy.com" id="animated-name" target="_blank" rel="noopener noreferrer">Mayank Singamreddy</a></div>
+    <header>
+        <img src="images/goodface.png" alt="Mayank Singamreddy" class="profile-pic">
+        <h1>Mayank Singamreddy</h1>
         
-        <div class="nav">
-            
-        </div>
-    </div>
-    
-    
-    <!-- Social media links and image slider -->
-    <div class="social-links-container">
         <div class="social-links">
-            <div>
-                <a href="https://x.com/mayonkeyy" class="twitter-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-twitter social-icon"></i>
-                    mayonkeyy
-                </a>
-            </div>
-            <div>
-                <a href="https://www.linkedin.com/in/mayank-singamreddy/" class="linkedin-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-linkedin social-icon"></i>
-                    mayank-singamreddy
-                </a>
-            </div>
-            <div>
-                <a href="https://www.instagram.com/mayonkey/" class="instagram-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-instagram social-icon"></i>
-                    mayonkey
-                </a>
-            </div>
-            
-            <div>
-                <a href="https://github.com/MayankSingamreddy" class="github-link" target="_blank" rel="noopener noreferrer">
-                    <i class="fa-brands fa-github social-icon"></i>
-                    MayankSingamreddy
-                </a>
-            </div>
+            <a href="https://x.com/mayonkeyy" target="_blank">Twitter</a>
+            <a href="https://www.linkedin.com/in/mayank-singamreddy/" target="_blank">LinkedIn</a>
+            <a href="https://www.instagram.com/mayonkey/" target="_blank">Instagram</a>
+            <a href="https://github.com/MayankSingamreddy" target="_blank">GitHub</a>
         </div>
-        
-        <!-- Image Circle Slider -->
-        <div class="image-circle-container">
-            <!-- Add invisible hitboxes for better click detection -->
-            <div class="left-hitbox"></div>
-            <div class="right-hitbox"></div>
-            
-            <div class="image-wrapper image-left">
-                <img src="images/twitterpfp.jpg" alt="First image">
-            </div>
-            <div class="image-wrapper image-right">
-                <img src="images/goodface.png" alt="Second image">
-            </div>
-        </div>
-    </div>
-    
-    <div class="divider"></div>
-    
-    <!-- Bio paragraphs -->
-    <div class="content">
-        <p style="font-style: italic;">
-            Probably drinking <span class="flowing-text">coffee</span> somewhere.
-        </p>
-        
-        <p style="font-weight: 400;">
-            In SF making agents at <span class="flowing-text emoji-pop"><i class="fa-brands fa-meta" style="color: #0081FB; font-size: 20px;"></i></span>. Prev <span class="flowing-text emoji-pop"><i class="fa-brands fa-apple" style="color: #979797; font-size: 24px;"></i></span> handling GenAI.
-        </p>
-        
+    </header>
+
+    <div class="bio">
+        <p>Probably drinking coffee somewhere.</p>
+        <p>In SF making agents at Meta. Prev Apple handling GenAI.</p>
     </div>
 
-    
-    <div class="divider"></div>
-    
-    <!-- Portfolio Section -->
-    <div class="portfolio-section">
-        <h2 class="section-header">Things I've Built</h2>
-        <div class="portfolio-grid">
-            <a href="https://trycravr.com" class="project-card" data-color="#FF1493" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">Cravr</h3>
-                    <p class="project-description">A food discovery iOS app which lets you search for food, not where to eat it.</p>
-                    <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">FastAPI</span>
-                        <span class="tag">Supabase</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://youtu.be/HWf43hId0-c" class="project-card" data-color="#8900ff" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">TheColorsOfAnime.com</h3>
-                    <p class="project-description">My art store for weebs. I promise you've never seen anything like this before, click on a poster!</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">JS</span>
-                        <span class="tag">Shopify</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://github.com/MayankSingamreddy/Oblivion" class="project-card" data-color="#ffb6c1" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">Oblivion</h3>
-                    <p class="project-description">AI proactively rewrites sites to your preferences. Ex. "Make it cute and minimal" to make it pink and remove distractions.</p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">Chrome Extension</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" class="project-card" data-color="#397b96" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">CheerSphere iOS App</h3>
-                    <p class="project-description">Cheer-specific marketplace. My co-founder was head cheerleader at Rutgers University who noticed a gap in the market.</p>
-                    <div class="project-tags">
-                        <span class="tag">Swift</span>
-                        <span class="tag">Firebase</span>
-                        <span class="tag">iOS</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" class="project-card" data-color="#ff212e" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">Let Me Check First</h3>
-                    <p class="project-description">Sends your LLM prompt to Ollama to fix and replace in-line.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">LLM</span>
-                        <span class="tag">Automation</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://www.skinnyfeels.app/" class="project-card" data-color="#7FC6A4" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">SkinnyFeels.app</h3>
-                    <p class="project-description">Nano Banana visualize a complete body composition chart of how you would look at various body fat percentages.</p>
-                    <div class="project-tags">
-                        <span class="tag">TypeScript</span>
-                        <span class="tag">Next.js</span>
-                        <span class="tag">Vercel</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://github.com/MayankSingamreddy/CameraControl" class="project-card" data-color="#9D00FF" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">Camera-Control</h3>
-                    <p class="project-description">Turn your webcam into a mouse, or be a DJ!</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">MediaPipe</span>
-                        <span class="tag">Computer Vision</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://github.com/MayankSingamreddy/PrettyPapers" class="project-card" data-color="#F8C630" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">Pretty-Papers</h3>
-                    <p class="project-description">Adds beautiful wallpapers to research paper PDFs to brighten the reading experience.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">PDF</span>
-                        <span class="tag">Design</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://youtu.be/fIL7X-HVAWI" class="project-card" data-color="#3597c7" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">FairestMirror.com</h3>
-                    <p class="project-description">See how mathematically beautiful you are. (View demo, shut down.)</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">MediaPipe</span>
-                        <span class="tag">FastAPI</span>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="https://github.com/MayankSingamreddy/FindDomains" class="project-card" data-color="#E67E22" target="_blank" rel="noopener noreferrer">
-                <div class="project-content">
-                    <h3 class="project-title">FindDomains</h3>
-                    <p class="project-description">Script for discovering available web and novel domain names.</p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">RDAP</span>
-                        <span class="tag">Multi-threading</span>
-                    </div>
-                </div>
-            </a>
+    <div class="projects">
+        <h2>Things I've Built</h2>
+
+        <div class="project-item">
+            <a href="https://trycravr.com" class="project-title" target="_blank">Cravr</a>
+            <div>A food discovery iOS app which lets you search for food, not where to eat it.</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://youtu.be/HWf43hId0-c" class="project-title" target="_blank">TheColorsOfAnime.com</a>
+            <div>My art store for weebs. I promise you've never seen anything like this before, click on a poster!</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://github.com/MayankSingamreddy/Oblivion" class="project-title" target="_blank">Oblivion</a>
+            <div>AI proactively rewrites sites to your preferences. Ex. "Make it cute and minimal" to make it pink and remove distractions.</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" class="project-title" target="_blank">CheerSphere iOS App</a>
+            <div>Cheer-specific marketplace. My co-founder was head cheerleader at Rutgers University who noticed a gap in the market.</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" class="project-title" target="_blank">Let Me Check First</a>
+            <div>Sends your LLM prompt to Ollama to fix and replace in-line.</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://www.skinnyfeels.app/" class="project-title" target="_blank">SkinnyFeels.app</a>
+            <div>Nano Banana visualize a complete body composition chart of how you would look at various body fat percentages.</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://github.com/MayankSingamreddy/CameraControl" class="project-title" target="_blank">Camera-Control</a>
+            <div>Turn your webcam into a mouse, or be a DJ!</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://github.com/MayankSingamreddy/PrettyPapers" class="project-title" target="_blank">Pretty-Papers</a>
+            <div>Adds beautiful wallpapers to research paper PDFs to brighten the reading experience.</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://youtu.be/fIL7X-HVAWI" class="project-title" target="_blank">FairestMirror.com</a>
+            <div>See how mathematically beautiful you are. (View demo, shut down.)</div>
+        </div>
+
+        <div class="project-item">
+            <a href="https://github.com/MayankSingamreddy/FindDomains" class="project-title" target="_blank">FindDomains</a>
+            <div>Script for discovering available web and novel domain names.</div>
         </div>
     </div>
-    
-    <!-- JavaScript for the image slider -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // Image slider functionality
-            const imageContainer = document.querySelector('.image-circle-container');
-            const leftImage = document.querySelector('.image-left');
-            const rightImage = document.querySelector('.image-right');
-            const leftHitbox = document.querySelector('.left-hitbox');
-            const rightHitbox = document.querySelector('.right-hitbox');
-            
-            let activeTimeout = null;
-
-            function showFullLeft() {
-                leftImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-                rightImage.style.clipPath = 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)';
-            }
-
-            function showFullRight() {
-                leftImage.style.clipPath = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
-                rightImage.style.clipPath = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
-            }
-
-            function resetView() {
-                leftImage.style.clipPath = 'polygon(0 0, 50% 0, 50% 100%, 0 100%)';
-                rightImage.style.clipPath = 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)';
-            }
-
-            // Event listeners using delegation where possible
-            if (leftHitbox && rightHitbox) {
-                leftHitbox.addEventListener('mouseenter', showFullLeft);
-                leftHitbox.addEventListener('mouseleave', resetView);
-                rightHitbox.addEventListener('mouseenter', showFullRight);
-                rightHitbox.addEventListener('mouseleave', resetView);
-
-                leftHitbox.addEventListener('click', () => {
-                    showFullLeft();
-                    if (activeTimeout) clearTimeout(activeTimeout);
-                    activeTimeout = setTimeout(resetView, 500);
-                });
-
-                rightHitbox.addEventListener('click', () => {
-                    showFullRight();
-                    if (activeTimeout) clearTimeout(activeTimeout);
-                    activeTimeout = setTimeout(resetView, 500);
-                });
-            }
-            
-            // Animated name functionality
-            const nameElement = document.getElementById('animated-name');
-            if (nameElement) {
-                const originalText = nameElement.textContent;
-                
-                // Split the name into individual letter spans
-                nameElement.innerHTML = originalText.split('').map(letter => 
-                    letter === ' ' ? `<span>&nbsp;</span>` : `<span>${letter}</span>`
-                ).join('');
-                
-                const letters = nameElement.querySelectorAll('span');
-                const colors = ['#3597C7', '#F8C630', '#7FC6A4'];
-                let animationInterval;
-                let isHovered = false;
-                
-                function updateColors() {
-                    if (isHovered) return;
-                    
-                    letters.forEach(letter => {
-                        if (letter.innerHTML === '&nbsp;') {
-                            letter.style.color = 'transparent';
-                            return;
-                        }
-                        
-                        const randomIndex = Math.floor(Math.random() * colors.length);
-                        letter.style.color = colors[randomIndex];
-                    });
-                }
-                
-                // Start animation
-                updateColors();
-                animationInterval = setInterval(updateColors, 500);
-                
-                // Pause and change color on hover/click
-                nameElement.addEventListener('mouseenter', function() {
-                    isHovered = true;
-                    letters.forEach(letter => {
-                        if (letter.innerHTML === '&nbsp;') {
-                            letter.style.color = 'transparent';
-                            return;
-                        }
-                        letter.style.color = '#302B27';
-                    });
-                });
-                
-                nameElement.addEventListener('mouseleave', function() {
-                    isHovered = false;
-                });
-                
-                nameElement.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    isHovered = true;
-                    letters.forEach(letter => {
-                        if (letter.innerHTML === '&nbsp;') {
-                            letter.style.color = 'transparent';
-                            return;
-                        }
-                        letter.style.color = '#302B27';
-                    });
-                    
-                    // Confetti burst on name click
-                    createConfetti(e.clientX, e.clientY);
-                });
-            }
-
-            // Confetti burst effect
-            function createConfetti(x, y) {
-                const colors = ['#3597C7', '#F8C630', '#7FC6A4', '#8900ff', '#ff212e'];
-                const confettiCount = 30;
-                
-                for (let i = 0; i < confettiCount; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = x + 'px';
-                    confetti.style.top = y + 'px';
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animation = `confettiFall ${1 + Math.random()}s ease-out forwards`;
-                    confetti.style.transform = `translateX(${(Math.random() - 0.5) * 200}px)`;
-                    
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 2000);
-                }
-            }
-
-            // Cursor trail effect
-            const trailColors = ['#3597C7', '#F8C630', '#7FC6A4'];
-            let lastTrailTime = 0;
-            const trailDelay = 50;
-            
-            document.addEventListener('mousemove', function(e) {
-                const now = Date.now();
-                if (now - lastTrailTime < trailDelay) return;
-                lastTrailTime = now;
-                
-                const trail = document.createElement('div');
-                trail.className = 'cursor-trail';
-                trail.style.left = e.pageX + 'px';
-                trail.style.top = e.pageY + 'px';
-                trail.style.backgroundColor = trailColors[Math.floor(Math.random() * trailColors.length)];
-                
-                document.body.appendChild(trail);
-                
-                setTimeout(() => {
-                    trail.style.opacity = '0';
-                    setTimeout(() => trail.remove(), 300);
-                }, 100);
-            });
-
-            // Sparkle effect on project card hover
-            const projectCards = document.querySelectorAll('.project-card');
-            projectCards.forEach(card => {
-                card.addEventListener('mouseenter', function(e) {
-                    createSparkles(this);
-                });
-            });
-
-            function createSparkles(card) {
-                const rect = card.getBoundingClientRect();
-                const sparkleCount = 5;
-                
-                for (let i = 0; i < sparkleCount; i++) {
-                    setTimeout(() => {
-                        const sparkle = document.createElement('div');
-                        sparkle.className = 'sparkle';
-                        sparkle.style.left = Math.random() * rect.width + 'px';
-                        sparkle.style.top = Math.random() * rect.height + 'px';
-                        
-                        card.appendChild(sparkle);
-                        
-                        setTimeout(() => sparkle.remove(), 600);
-                    }, i * 100);
-                }
-            }
-
-            // 3D tilt effect on project cards
-            projectCards.forEach(card => {
-                card.addEventListener('mousemove', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    
-                    const rotateX = (y - centerY) / 20;
-                    const rotateY = (centerX - x) / 20;
-                    
-                    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-2px)`;
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-                });
-            });
-        });
-    </script>
 </body>
 </html>
