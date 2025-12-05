@@ -17,126 +17,459 @@
     </script>
 
     <style>
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            max-width: 600px;
-            margin: 4rem auto;
-            padding: 0 1rem;
-            line-height: 1.6;
-            color: #111;
-            text-align: center;
+        :root {
+            --color-text: #1d1d1f;
+            --color-text-secondary: #86868b;
+            --color-link: #0066cc;
+            --bg-color: #ffffff;
+            --card-bg: #f5f5f7;
         }
-        img {
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--color-text);
+            margin: 0;
+            padding: 80px 24px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        /* Header Section */
+        .header-profile {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+            padding: 0 12px;
+        }
+
+        .header-profile img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
             object-fit: cover;
-            display: block;
-            margin: 0 auto 1.5rem auto;
+            background-color: var(--card-bg);
         }
+
         h1 {
-            font-size: 1.2rem;
-            margin: 0 0 0.5rem 0;
+            font-size: 40px;
+            line-height: 1.1;
             font-weight: 600;
+            letter-spacing: -0.02em;
+            margin: 0;
+            color: var(--color-text);
         }
-        h2 {
-            font-size: 1rem;
-            margin: 2rem 0 1rem 0;
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns side by side */
+            gap: 20px;
+            width: 100%;
+            align-items: start;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 24px;
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+        }
+
+        .card.active {
+            z-index: 100;
+            background-color: #fff;
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.04); /* Uplifting shadow only */
+        }
+
+        /* The Bridge Block - Connects down to content */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #fff;
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card.active::after {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* The Fillets - Smooth curves connecting card to bridge */
+        .card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -24px;
+            width: calc(100% + 48px);
+            height: 24px;
+            background-image: 
+                radial-gradient(circle at 0 0, transparent 24px, #fff 24.5px),
+                radial-gradient(circle at 100% 0, transparent 24px, #fff 24.5px);
+            background-position: top left, top right;
+            background-size: 50% 100%;
+            background-repeat: no-repeat;
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card.active::before {
+            opacity: 1;
+        }
+
+        .card h2 {
+            font-size: 20px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+            margin: 0;
+            color: var(--color-text);
+            text-align: center;
         }
-        p {
-            margin: 0 0 0.5rem 0;
+
+        .card-content {
+            position: absolute;
+            top: calc(100% + 24px);
+            left: 0;
+            width: calc(400% + 60px);
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            
+            /* Genie Effect Initial State */
+            opacity: 0;
+            transform: scale(0.1) translateY(-60px);
+            
+            /* Genie Effect Transition */
+            transition: 
+                opacity 0.3s cubic-bezier(0.4, 0, 1, 1),
+                transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+                
+            max-height: 0;
+            overflow: hidden;
+            pointer-events: none;
+            color: var(--color-text-secondary);
+            z-index: 1; /* Under the bridge */
         }
-        a {
-            color: #000;
-            text-decoration: underline;
+
+        /* Set Transform Origins for Genie Effect - originating from card bottom (-24px) */
+        .card:nth-child(1) .card-content { transform-origin: 12.5% -24px; }
+        .card:nth-child(2) .card-content { transform-origin: 37.5% -24px; }
+        .card:nth-child(3) .card-content { transform-origin: 62.5% -24px; }
+        .card:nth-child(4) .card-content { transform-origin: 87.5% -24px; }
+
+        /* Corner adjustments for first and last cards to look connected */
+        .card:first-child.active .card-content {
+            border-top-left-radius: 0;
         }
-        a:hover {
+        
+        .card:last-child.active .card-content {
+            border-top-right-radius: 0;
+        }
+
+        /* Position content to span full grid width based on which card */
+        .card:nth-child(2) .card-content {
+            left: calc(-100% - 20px);
+        }
+        .card:nth-child(3) .card-content {
+            left: calc(-200% - 40px);
+        }
+        .card:nth-child(4) .card-content {
+            left: calc(-300% - 60px);
+        }
+
+        .card.active .card-content {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            max-height: 80vh;
+            overflow-y: auto;
+            pointer-events: auto;
+        }
+
+        /* Shared Content Styles (Bio & Why) */
+        .bio p, .why-content p {
+            font-size: 18px;
+            line-height: 1.6;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            margin: 0 0 10px 0;
+        }
+        .bio a {
+            color: var(--color-text);
             text-decoration: none;
+            border-bottom: 1px solid rgba(29, 29, 31, 0.3);
+            transition: all 0.2s ease;
         }
-        ul {
+        .bio a:hover {
+            border-bottom-color: var(--color-link);
+            color: var(--color-link);
+        }
+
+        /* Where - Links */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .links-container a {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            background-color: #f5f5f7;
+            border-radius: 12px;
+            transition: background-color 0.2s ease;
+        }
+        .links-container a:hover {
+            background-color: #ebebeb;
+            color: var(--color-link);
+        }
+
+        /* What - Projects */
+        ul.projects-list {
             list-style: none;
             padding: 0;
             margin: 0;
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        li {
-            margin-bottom: 1.5rem;
+        
+        .projects-list li {
+            font-size: 16px;
+            line-height: 1.5;
+            color: var(--color-text-secondary);
         }
-        .links {
-            margin-bottom: 2rem;
+        .projects-list li a {
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-text);
+            text-decoration: none;
+            margin-bottom: 4px;
         }
-        .links a {
-            margin-right: 1rem;
+        .projects-list li a:hover {
+            color: var(--color-link);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            .header-profile {
+                gap: 16px;
+                margin-bottom: 32px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .header-profile img {
+                width: 60px;
+                height: 60px;
+            }
+
+            /* Keep 4 columns but reduce spacing/padding */
+            .grid {
+                gap: 8px; 
+            }
+            
+            .card {
+                padding: 12px 6px;
+                min-height: 70px;
+            }
+            
+            .card h2 {
+                font-size: 13px;
+            }
+            
+            /* Recalculate for smaller gaps */
+            .card-content {
+                width: calc(400% + 24px); /* 4 cards + 3 gaps of 8px */
+                padding: 0 20px;
+            }
+            
+            .card:nth-child(2) .card-content {
+                left: calc(-100% - 8px);
+            }
+            .card:nth-child(3) .card-content {
+                left: calc(-200% - 16px);
+            }
+            .card:nth-child(4) .card-content {
+                left: calc(-300% - 24px);
+            }
+            
+            .card.active .card-content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <img src="images/goodface.png" alt="Mayank Singamreddy">
-    
-    <h1>Mayank Singamreddy</h1>
-    
-    <div class="links">
-        <a href="https://x.com/mayonkeyy" target="_blank">Twitter</a>
-        <a href="https://www.linkedin.com/in/mayank-singamreddy/" target="_blank">LinkedIn</a>
-        <a href="https://www.instagram.com/mayonkey/" target="_blank">Instagram</a>
-        <a href="https://github.com/MayankSingamreddy" target="_blank">GitHub</a>
-        <a href="mailto:mayank.singamreddy@gmail.com">Email</a>
+    <div class="container">
+        <div class="header-profile">
+            <img src="images/goodface.png" alt="Mayank Singamreddy">
+            <h1>Mayank Singamreddy</h1>
+        </div>
+
+        <div class="grid">
+            <!-- 1. Why -->
+            <div class="card" onclick="toggleCard(this)">
+                <h2>Why</h2>
+                <div class="card-content why-content">
+                    <p>The credit belongs to the man who is actually in the arena</p>
+                    <p>who comes short again and again</p>
+                    <p>who spends himself in a worthy cause</p>
+                    <p>who at the best knows in the end the triumph of high achievement</p>
+                    <p>and who at the worst, if he fails</p>
+                    <p>at least fails while daring greatly</p>
+                    <p>so that his place shall never be with those cold and timid souls</p>
+                    <p>who neither know victory nor defeat.</p>
+                </div>
+            </div>
+
+            <!-- 2. Who -->
+            <div class="card" onclick="toggleCard(this)">
+                <h2>How</h2>
+                <div class="card-content bio">
+                    <p>in SF</p>
+                    <p>at Meta making agents</p>
+                    <p>ex-Apple</p>
+                    <p>life is short</p>
+                    <p>there is no spoon</p>
+                    <p>and everything you call 'life' was made by people <a href="https://www.youtube.com/watch?v=kYfNvmF0Bqw" target="_blank" onclick="event.stopPropagation()">no smarter than you</a></p>
+                </div>
+            </div>
+
+            <!-- 3. What -->
+            <div class="card" onclick="toggleCard(this)">
+                <h2>What</h2>
+                <div class="card-content">
+                    <ul class="projects-list">
+                        <li>
+                            <a href="https://trycravr.com" target="_blank" onclick="event.stopPropagation()">Cravr</a>
+                            A food discovery iOS app which lets you search for food, not where to eat it.
+                        </li>
+                        <li>
+                            <a href="https://thecolorsofanime.com" target="_blank" onclick="event.stopPropagation()">TheColorsOfAnime.com</a>
+                            My art store for weebs. I promise you've never seen anything like this before, click on a poster!
+                        </li>
+                        <li>
+                            <a href="https://github.com/MayankSingamreddy/Oblivion" target="_blank" onclick="event.stopPropagation()">Oblivion</a>
+                            AI proactively rewrites sites to your preferences.
+                        </li>
+                        <li>
+                            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" target="_blank" onclick="event.stopPropagation()">CheerSphere iOS App</a>
+                            Cheer-specific marketplace.
+                        </li>
+                        <li>
+                            <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" target="_blank" onclick="event.stopPropagation()">Let Me Check First</a>
+                            Sends your LLM prompt to Ollama to fix and replace in-line.
+                        </li>
+                        <li>
+                            <a href="https://www.skinnyfeels.app/" target="_blank" onclick="event.stopPropagation()">SkinnyFeels.app</a>
+                            Nano Banana visualize a complete body composition chart.
+                        </li>
+                        <li>
+                            <a href="https://github.com/MayankSingamreddy/CameraControl" target="_blank" onclick="event.stopPropagation()">Camera-Control</a>
+                            Turn your webcam into a mouse, or be a DJ!
+                        </li>
+                        <li>
+                            <a href="https://github.com/MayankSingamreddy/PrettyPapers" target="_blank" onclick="event.stopPropagation()">Pretty-Papers</a>
+                            Adds beautiful wallpapers to research paper PDFs.
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/fIL7X-HVAWI" target="_blank" onclick="event.stopPropagation()">FairestMirror.com</a>
+                            See how mathematically beautiful you are.
+                        </li>
+                        <li>
+                            <a href="https://github.com/MayankSingamreddy/FindDomains" target="_blank" onclick="event.stopPropagation()">FindDomains</a>
+                            Script for discovering available web and novel domain names.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. Where -->
+            <div class="card" onclick="toggleCard(this)">
+                <h2>Where</h2>
+                <div class="card-content links-container">
+                    <a href="https://x.com/mayonkeyy" target="_blank" onclick="event.stopPropagation()">Twitter <span>→</span></a>
+                    <a href="https://www.linkedin.com/in/mayank-singamreddy/" target="_blank" onclick="event.stopPropagation()">LinkedIn <span>→</span></a>
+                    <a href="https://www.instagram.com/mayonkey/" target="_blank" onclick="event.stopPropagation()">Instagram <span>→</span></a>
+                    <a href="https://github.com/MayankSingamreddy" target="_blank" onclick="event.stopPropagation()">GitHub <span>→</span></a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="bio">
-        <p>Moved to SF to find the others</p>
-        <p>At Meta making agents</p>
-        <p>Ex-Apple GenAI infra</p>
-        <p>here to have fun, learn, and push myself</p>
-        <p>alignment over everything</p>
-        <p> <a href="https://www.youtube.com/watch?v=kYfNvmF0Bqw" target="_blank">steve jobs</a> and <a href="https://x.com/naval/status/1804011511838577098" target="_blank">naval</a></p>
-    </div>
+    <script>
+        function toggleCard(clickedCard) {
+            const cards = document.querySelectorAll('.card');
+            
+            // If clicked card is already active, just close it
+            if (clickedCard.classList.contains('active')) {
+                clickedCard.classList.remove('active');
+                return;
+            }
 
-    <h2>Projects</h2>
-    <ul>
-        <li>
-            <a href="https://trycravr.com" target="_blank">Cravr</a><br>
-            A food discovery iOS app which lets you search for food, not where to eat it.
-        </li>
-        <li>
-            <a href="https://thecolorsofanime.com" target="_blank">TheColorsOfAnime.com</a><br>
-            My art store for weebs. I promise you've never seen anything like this before, click on a poster!
-        </li>
-        <li>
-            <a href="https://github.com/MayankSingamreddy/Oblivion" target="_blank">Oblivion</a><br>
-            AI proactively rewrites sites to your preferences. Ex. "Make it cute and minimal" to make it pink and remove distractions.
-        </li>
-        <li>
-            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" target="_blank">CheerSphere iOS App</a><br>
-            Cheer-specific marketplace. My co-founder was head cheerleader at Rutgers University who noticed a gap in the market.
-        </li>
-        <li>
-            <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" target="_blank">Let Me Check First</a><br>
-            Sends your LLM prompt to Ollama to fix and replace in-line.
-        </li>
-        <li>
-            <a href="https://www.skinnyfeels.app/" target="_blank">SkinnyFeels.app</a><br>
-            Nano Banana visualize a complete body composition chart of how you would look at various body fat percentages.
-        </li>
-        <li>
-            <a href="https://github.com/MayankSingamreddy/CameraControl" target="_blank">Camera-Control</a><br>
-            Turn your webcam into a mouse, or be a DJ!
-        </li>
-        <li>
-            <a href="https://github.com/MayankSingamreddy/PrettyPapers" target="_blank">Pretty-Papers</a><br>
-            Adds beautiful wallpapers to research paper PDFs to brighten the reading experience.
-        </li>
-        <li>
-            <a href="https://youtu.be/fIL7X-HVAWI" target="_blank">FairestMirror.com</a><br>
-            See how mathematically beautiful you are. (View demo, shut down.)
-        </li>
-        <li>
-            <a href="https://github.com/MayankSingamreddy/FindDomains" target="_blank">FindDomains</a><br>
-            Script for discovering available web and novel domain names.
-        </li>
-    </ul>
+            // Otherwise, close all other cards and open the clicked one
+            cards.forEach(card => {
+                card.classList.remove('active');
+            });
+            
+            clickedCard.classList.add('active');
+        }
+
+        // Close expanded card when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.card')) {
+                document.querySelectorAll('.card.active').forEach(card => {
+                    card.classList.remove('active');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
