@@ -294,6 +294,57 @@
             color: var(--color-link);
         }
 
+        /* Toggle Icon */
+        .toggle-icon {
+            width: 10px;
+            height: 10px;
+            position: relative;
+            margin-top: 10px;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover .toggle-icon {
+            opacity: 1;
+        }
+
+        .toggle-icon::before,
+        .toggle-icon::after {
+            content: '';
+            position: absolute;
+            background-color: var(--color-text);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Horizontal line */
+        .toggle-icon::before {
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+
+        /* Vertical line */
+        .toggle-icon::after {
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            transform: translateX(-50%);
+        }
+
+        /* State: Active (Minus) */
+        .card.active .toggle-icon::after {
+            transform: translateX(-50%) scaleY(0);
+        }
+
+        /* State: Visited (Hide Plus when not active) */
+        .card.visited:not(.active) .toggle-icon {
+            opacity: 0;
+        }
+
         /* Mobile Adjustments */
         @media (max-width: 640px) {
             .header-profile {
@@ -344,6 +395,23 @@
                 padding: 20px;
             }
         }
+
+        /* Secret Message */
+        .secret-message {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease;
+            font-style: italic;
+        }
+        
+        .secret-message.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body>
@@ -357,6 +425,7 @@
             <!-- 1. Why -->
             <div class="card" onclick="toggleCard(this)">
                 <h2>Why</h2>
+                <div class="toggle-icon"></div>
                 <div class="card-content why-content">
                     <p>The credit belongs to the man who is actually in the arena</p>
                     <p>who comes short again and again</p>
@@ -372,6 +441,7 @@
             <!-- 2. Who -->
             <div class="card" onclick="toggleCard(this)">
                 <h2>How</h2>
+                <div class="toggle-icon"></div>
                 <div class="card-content bio">
                     <p>in SF</p>
                     <p>at Meta making agents</p>
@@ -385,6 +455,7 @@
             <!-- 3. What -->
             <div class="card" onclick="toggleCard(this)">
                 <h2>What</h2>
+                <div class="toggle-icon"></div>
                 <div class="card-content">
                     <ul class="projects-list">
                         <li>
@@ -434,6 +505,7 @@
             <!-- 4. Where -->
             <div class="card" onclick="toggleCard(this)">
                 <h2>Where</h2>
+                <div class="toggle-icon"></div>
                 <div class="card-content links-container">
                     <a href="https://x.com/mayonkeyy" target="_blank" onclick="event.stopPropagation()">Twitter <span>→</span></a>
                     <a href="https://www.linkedin.com/in/mayank-singamreddy/" target="_blank" onclick="event.stopPropagation()">LinkedIn <span>→</span></a>
@@ -442,15 +514,41 @@
                 </div>
             </div>
         </div>
+        
+        <div id="secret-message" class="secret-message">
+            ok, ur done. <br><br>
+            what do you want, a cookie?<br><br>
+            okay here's a cookie<br><br>
+            🍪<br><br>
+            now get outta here
+        </div>
     </div>
 
     <script>
+        function checkSecretMessage() {
+            const cards = document.querySelectorAll('.card');
+            const message = document.getElementById('secret-message');
+            
+            const allVisited = Array.from(cards).every(card => card.classList.contains('visited'));
+            const anyActive = Array.from(cards).some(card => card.classList.contains('active'));
+
+            if (allVisited && !anyActive) {
+                message.classList.add('visible');
+            } else {
+                message.classList.remove('visible');
+            }
+        }
+
         function toggleCard(clickedCard) {
+            // Mark as visited so the plus icon can be hidden later
+            clickedCard.classList.add('visited');
+
             const cards = document.querySelectorAll('.card');
             
             // If clicked card is already active, just close it
             if (clickedCard.classList.contains('active')) {
                 clickedCard.classList.remove('active');
+                checkSecretMessage();
                 return;
             }
 
@@ -460,14 +558,19 @@
             });
             
             clickedCard.classList.add('active');
+            checkSecretMessage();
         }
 
         // Close expanded card when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.card')) {
-                document.querySelectorAll('.card.active').forEach(card => {
-                    card.classList.remove('active');
-                });
+                const activeCards = document.querySelectorAll('.card.active');
+                if (activeCards.length > 0) {
+                    activeCards.forEach(card => {
+                        card.classList.remove('active');
+                    });
+                    checkSecretMessage();
+                }
             }
         });
     </script>
