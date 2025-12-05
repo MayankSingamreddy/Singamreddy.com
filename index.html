@@ -18,141 +18,125 @@
 
     <style>
         body {
-            font-family: sans-serif;
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 40px 20px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 600px;
+            margin: 4rem auto;
+            padding: 0 1rem;
             line-height: 1.6;
-            color: #333;
+            color: #111;
+            text-align: center;
         }
-        
-        header {
-            margin-bottom: 40px;
-        }
-
-        .profile-pic {
-            width: 120px;
-            height: 120px;
+        img {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
             display: block;
-            margin-bottom: 20px;
+            margin: 0 auto 1.5rem auto;
         }
-
         h1 {
-            font-size: 2em;
-            margin: 0 0 10px 0;
-            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
         }
-
+        h2 {
+            font-size: 1rem;
+            margin: 2rem 0 1rem 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        p {
+            margin: 0 0 0.5rem 0;
+        }
         a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        a:hover {
+            color: #000;
             text-decoration: underline;
         }
-
-        .social-links {
-            margin-bottom: 30px;
+        a:hover {
+            text-decoration: none;
         }
-
-        .social-links a {
-            margin-right: 15px;
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
         }
-
-        .bio {
-            margin-bottom: 40px;
+        li {
+            margin-bottom: 1.5rem;
         }
-
-        .projects h2 {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+        .links {
+            margin-bottom: 2rem;
         }
-
-        .project-item {
-            margin-bottom: 25px;
-        }
-
-        .project-title {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 5px;
+        .links a {
+            margin-right: 1rem;
         }
     </style>
 </head>
 <body>
-    <header>
-        <img src="images/goodface.png" alt="Mayank Singamreddy" class="profile-pic">
-        <h1>Mayank Singamreddy</h1>
-        
-        <div class="social-links">
-            <a href="https://x.com/mayonkeyy" target="_blank">Twitter</a>
-            <a href="https://www.linkedin.com/in/mayank-singamreddy/" target="_blank">LinkedIn</a>
-            <a href="https://www.instagram.com/mayonkey/" target="_blank">Instagram</a>
-            <a href="https://github.com/MayankSingamreddy" target="_blank">GitHub</a>
-        </div>
-    </header>
+    <img src="images/goodface.png" alt="Mayank Singamreddy">
+    
+    <h1>Mayank Singamreddy</h1>
+    
+    <div class="links">
+        <a href="https://x.com/mayonkeyy" target="_blank">Twitter</a>
+        <a href="https://www.linkedin.com/in/mayank-singamreddy/" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/mayonkey/" target="_blank">Instagram</a>
+        <a href="https://github.com/MayankSingamreddy" target="_blank">GitHub</a>
+        <a href="mailto:mayank.singamreddy@gmail.com">Email</a>
+    </div>
 
     <div class="bio">
-        <p>Probably drinking coffee somewhere.</p>
-        <p>In SF making agents at Meta. Prev Apple handling GenAI.</p>
+        <p>Moved to SF to find the others</p>
+        <p>At Meta making agents</p>
+        <p>Ex-Apple GenAI infra</p>
+        <p>here to have fun, learn, and push myself</p>
+        <p>alignment over everything</p>
+        <p> <a href="https://www.youtube.com/watch?v=kYfNvmF0Bqw" target="_blank">steve jobs</a> and <a href="https://x.com/naval/status/1804011511838577098" target="_blank">naval</a></p>
     </div>
 
-    <div class="projects">
-        <h2>Things I've Built</h2>
-
-        <div class="project-item">
-            <a href="https://trycravr.com" class="project-title" target="_blank">Cravr</a>
-            <div>A food discovery iOS app which lets you search for food, not where to eat it.</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://youtu.be/HWf43hId0-c" class="project-title" target="_blank">TheColorsOfAnime.com</a>
-            <div>My art store for weebs. I promise you've never seen anything like this before, click on a poster!</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://github.com/MayankSingamreddy/Oblivion" class="project-title" target="_blank">Oblivion</a>
-            <div>AI proactively rewrites sites to your preferences. Ex. "Make it cute and minimal" to make it pink and remove distractions.</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" class="project-title" target="_blank">CheerSphere iOS App</a>
-            <div>Cheer-specific marketplace. My co-founder was head cheerleader at Rutgers University who noticed a gap in the market.</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" class="project-title" target="_blank">Let Me Check First</a>
-            <div>Sends your LLM prompt to Ollama to fix and replace in-line.</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://www.skinnyfeels.app/" class="project-title" target="_blank">SkinnyFeels.app</a>
-            <div>Nano Banana visualize a complete body composition chart of how you would look at various body fat percentages.</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://github.com/MayankSingamreddy/CameraControl" class="project-title" target="_blank">Camera-Control</a>
-            <div>Turn your webcam into a mouse, or be a DJ!</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://github.com/MayankSingamreddy/PrettyPapers" class="project-title" target="_blank">Pretty-Papers</a>
-            <div>Adds beautiful wallpapers to research paper PDFs to brighten the reading experience.</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://youtu.be/fIL7X-HVAWI" class="project-title" target="_blank">FairestMirror.com</a>
-            <div>See how mathematically beautiful you are. (View demo, shut down.)</div>
-        </div>
-
-        <div class="project-item">
-            <a href="https://github.com/MayankSingamreddy/FindDomains" class="project-title" target="_blank">FindDomains</a>
-            <div>Script for discovering available web and novel domain names.</div>
-        </div>
-    </div>
+    <h2>Projects</h2>
+    <ul>
+        <li>
+            <a href="https://trycravr.com" target="_blank">Cravr</a><br>
+            A food discovery iOS app which lets you search for food, not where to eat it.
+        </li>
+        <li>
+            <a href="https://thecolorsofanime.com" target="_blank">TheColorsOfAnime.com</a><br>
+            My art store for weebs. I promise you've never seen anything like this before, click on a poster!
+        </li>
+        <li>
+            <a href="https://github.com/MayankSingamreddy/Oblivion" target="_blank">Oblivion</a><br>
+            AI proactively rewrites sites to your preferences. Ex. "Make it cute and minimal" to make it pink and remove distractions.
+        </li>
+        <li>
+            <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" target="_blank">CheerSphere iOS App</a><br>
+            Cheer-specific marketplace. My co-founder was head cheerleader at Rutgers University who noticed a gap in the market.
+        </li>
+        <li>
+            <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" target="_blank">Let Me Check First</a><br>
+            Sends your LLM prompt to Ollama to fix and replace in-line.
+        </li>
+        <li>
+            <a href="https://www.skinnyfeels.app/" target="_blank">SkinnyFeels.app</a><br>
+            Nano Banana visualize a complete body composition chart of how you would look at various body fat percentages.
+        </li>
+        <li>
+            <a href="https://github.com/MayankSingamreddy/CameraControl" target="_blank">Camera-Control</a><br>
+            Turn your webcam into a mouse, or be a DJ!
+        </li>
+        <li>
+            <a href="https://github.com/MayankSingamreddy/PrettyPapers" target="_blank">Pretty-Papers</a><br>
+            Adds beautiful wallpapers to research paper PDFs to brighten the reading experience.
+        </li>
+        <li>
+            <a href="https://youtu.be/fIL7X-HVAWI" target="_blank">FairestMirror.com</a><br>
+            See how mathematically beautiful you are. (View demo, shut down.)
+        </li>
+        <li>
+            <a href="https://github.com/MayankSingamreddy/FindDomains" target="_blank">FindDomains</a><br>
+            Script for discovering available web and novel domain names.
+        </li>
+    </ul>
 </body>
 </html>
