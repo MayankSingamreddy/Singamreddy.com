@@ -8,12 +8,12 @@
     <meta name="description" content="Based in SF. Working at Meta on AI data products. Previously at Apple handling GenAI. Artist of TheColorsOfAnime and CheerSphere.">
     
     <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7VE19FMYZW"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TK0GGSYKYD"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-7VE19FMYZW', { 'send_page_view': true });
+      gtag('config', 'G-TK0GGSYKYD');
     </script>
 
     <style>
@@ -140,6 +140,79 @@
             font-size: 14px;
         }
 
+        .collapsible-section {
+            margin-bottom: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .collapsible-section:hover {
+            border-color: #ccc;
+        }
+
+        .collapsible-section.open {
+            border-color: #ccc;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .collapsible-btn {
+            background: #fafafa;
+            border: none;
+            font-family: inherit;
+            font-size: 15px;
+            color: #222;
+            cursor: pointer;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s ease, color 0.2s ease;
+            width: 100%;
+        }
+
+        .collapsible-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .collapsible-btn::after {
+            content: '▾';
+            margin-left: auto;
+            font-size: 12px;
+            color: #999;
+            transition: transform 0.3s ease;
+            transform: rotate(-90deg);
+        }
+
+        .collapsible-btn.active {
+            background: #f5f5f5;
+        }
+
+        .collapsible-btn.active::after {
+            transform: rotate(0deg);
+        }
+
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+            opacity: 0;
+            padding: 0 16px;
+            background: #fff;
+        }
+
+        .collapsible-content.open {
+            max-height: 1000px;
+            opacity: 1;
+            padding: 16px;
+            padding-top: 8px;
+        }
+
+        .collapsible-content ul {
+            padding-top: 0;
+        }
+
         .footer {
             margin-top: 48px;
             font-size: 13px;
@@ -164,59 +237,102 @@
     <section class="bio-section">
         <img src="images/goodface.png" alt="Mayank Singamreddy">
         <div class="bio">
-            <p>in SF</p>
-            <p>at Meta making agents</p>
-            <p>ex-Apple</p>
-            <p>life is short</p>
-            <p>there is no spoon</p>
-            <p>and 'life' was made by people no smarter than you</p>
+            <p>founder in the mission in SF</p>
+            <p>curr applied AI @ Meta</p>
+            <p>ex Apple genAI</p>
+            <p>The average human life is 4,000 weeks.</p>
+            <p>We don't know what waits for us after that.</p>
+            <p>I'm looking for what I'm supposed to be doing.</p>
         </div>
     </section>
 
     <section>
-        <ul class="projects">
-            <li>
-                <a href="https://trycravr.com" target="_blank" class="project-title">Cravr</a>
-                <span class="project-desc">— A food discovery iOS app which lets you search for food, not where to eat it.</span>
-            </li>
-            <li>
-                <a href="https://thecolorsofanime.com" target="_blank" class="project-title">TheColorsOfAnime.com</a>
-                <span class="project-desc">— My art store for weebs. I promise you've never seen anything like this before, click on a poster!</span>
-            </li>
-            <li>
-                <a href="https://github.com/MayankSingamreddy/Oblivion" target="_blank" class="project-title">Oblivion</a>
-                <span class="project-desc">— AI proactively rewrites sites to your preferences.</span>
-            </li>
-            <li>
-                <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" target="_blank" class="project-title">CheerSphere iOS App</a>
-                <span class="project-desc">— Cheer-specific marketplace.</span>
-            </li>
-            <li>
-                <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" target="_blank" class="project-title">Let Me Check First</a>
-                <span class="project-desc">— Sends your LLM prompt to Ollama to fix and replace in-line.</span>
-            </li>
-            <li>
-                <a href="https://www.skinnyfeels.app/" target="_blank" class="project-title">SkinnyFeels.app</a>
-                <span class="project-desc">— Nano Banana visualize a complete body composition chart.</span>
-            </li>
-            <li>
-                <a href="https://github.com/MayankSingamreddy/CameraControl" target="_blank" class="project-title">Camera-Control</a>
-                <span class="project-desc">— Turn your webcam into a mouse, or be a DJ!</span>
-            </li>
-            <li>
-                <a href="https://github.com/MayankSingamreddy/PrettyPapers" target="_blank" class="project-title">Pretty-Papers</a>
-                <span class="project-desc">— Adds beautiful wallpapers to research paper PDFs.</span>
-            </li>
-            <li>
-                <a href="https://youtu.be/fIL7X-HVAWI" target="_blank" class="project-title">FairestMirror.com</a>
-                <span class="project-desc">— See how mathematically beautiful you are.</span>
-            </li>
-            <li>
-                <a href="https://github.com/MayankSingamreddy/FindDomains" target="_blank" class="project-title">FindDomains</a>
-                <span class="project-desc">— Script for discovering available web and novel domain names.</span>
-            </li>
-            </ul>
+        <div class="collapsible-section">
+            <button class="collapsible-btn" onclick="toggleCollapsible(this)">see projects i've built</button>
+            <div class="collapsible-content">
+                <ul class="projects">
+                    <li>
+                        <a href="https://apps.apple.com/us/app/cravr-smarter-food-search/id6754335758" target="_blank" class="project-title">Cravr</a>
+                        <span class="project-desc">— A food discovery iOS app which lets you search for food, not where to eat it.</span>
+                    </li>
+                    <li>
+                        <a href="https://thecolorsofanime.com" target="_blank" class="project-title">TheColorsOfAnime.com</a>
+                        <span class="project-desc">— Movies re-rendered in color, frame by frame.</span>
+                    </li>
+                    <li>
+                        <a href="https://apps.apple.com/us/app/cheersphere/id6503993239" target="_blank" class="project-title">CheerSphere iOS App</a>
+                        <span class="project-desc">— Cheer-specific marketplace.</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/MayankSingamreddy/LetMeCheckFirst" target="_blank" class="project-title">Let Me Check First</a>
+                        <span class="project-desc">— Sends your LLM prompt to Ollama to fix and replace in-line.</span>
+                    </li>
+                    <li>
+                        <a href="https://www.skinnyfeels.app/" target="_blank" class="project-title">SkinnyFeels.app</a>
+                        <span class="project-desc">— Nano Banana visualize a complete body composition chart.</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/MayankSingamreddy/CameraControl" target="_blank" class="project-title">Camera-Control</a>
+                        <span class="project-desc">— Turn your webcam into a mouse, or be a DJ!</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/MayankSingamreddy/PrettyPapers" target="_blank" class="project-title">Pretty-Papers</a>
+                        <span class="project-desc">— Adds beautiful wallpapers to research paper PDFs.</span>
+                    </li>
+                    <li>
+                        <a href="https://youtu.be/fIL7X-HVAWI" target="_blank" class="project-title">FairestMirror.com</a>
+                        <span class="project-desc">— See how mathematically beautiful you are.</span>
+                    </li>
+                    <li>
+                        <a href="https://github.com/MayankSingamreddy/FindDomains" target="_blank" class="project-title">FindDomains</a>
+                        <span class="project-desc">— Script for discovering available web and novel domain names.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="collapsible-section">
+            <button class="collapsible-btn" onclick="toggleCollapsible(this)">problems that i'd like to solve</button>
+            <div class="collapsible-content">
+                <ul class="projects">
+                    <li>
+                        <span class="project-title">Personal knowledge graphs</span>
+                        <span class="project-desc">— A way to capture, connect, and resurface everything you've ever learned.</span>
+                    </li>
+                    <li>
+                        <span class="project-title">Passive health monitoring</span>
+                        <span class="project-desc">— Continuous, non-invasive tracking of biomarkers without wearables.</span>
+                    </li>
+                    <li>
+                        <span class="project-title">AI-native creative tools</span>
+                        <span class="project-desc">— Software that collaborates with you rather than just executing commands.</span>
+                    </li>
+                    <li>
+                        <span class="project-title">Local-first social networks</span>
+                        <span class="project-desc">— Community platforms that don't rely on engagement algorithms.</span>
+                    </li>
+                    <li>
+                        <span class="project-title">Decision journaling systems</span>
+                        <span class="project-desc">— Tools to track decisions over time and learn from outcomes.</span>
+                    </li>
+                    <li>
+                        <span class="project-title">Ambient documentation</span>
+                        <span class="project-desc">— Automatically capture and organize context from daily work.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </section>
+
+    <script>
+        function toggleCollapsible(button) {
+            button.classList.toggle('active');
+            const content = button.nextElementSibling;
+            const section = button.parentElement;
+            content.classList.toggle('open');
+            section.classList.toggle('open');
+        }
+    </script>
 
     <section>
         <blockquote>
