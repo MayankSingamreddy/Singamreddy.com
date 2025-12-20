@@ -3,304 +3,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proof of God - Singamreddy</title>
+    <title>On Mysticism and Proof of God - Singamreddy</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <meta name="description" content="Thoughts on mysticism and proof of God by Mayank Singamreddy.">
-    <!-- Google Fonts - Inter font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <!-- Font Awesome for social icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <style>
-        /* Fade-in animation for page elements */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Base styles with viewport-relative font sizing */
-        :root {
-            --base-font-size: 1vw;
-            --name-font-size: calc(var(--base-font-size) * 1.4);
-            --nav-font-size: calc(var(--base-font-size) * 1.4);
-            --content-font-size: calc(var(--base-font-size) * 1.1);
-            --title-font-size: calc(var(--base-font-size) * 2.2);
-        }
-        
-        body {
-            font-family: "Inter", sans-serif;
-            color: black;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 5vh 20px;
-            background-color: white;
-            font-size: var(--content-font-size);
-            font-weight: 300;
-            animation: fadeIn 1s ease-in-out;
-            line-height: 1.4;
-        }
-        
-        /* Header section with name and navigation */
-        .header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            padding: 12px 0;
-        }
-        
-        .name {
-            font-size: var(--name-font-size);
-            font-weight: 400;
-            max-width: 100%;
-            word-wrap: break-word;
-        }
-        
-        .name a {
-            color: #3597c7;
-            text-decoration: none;
-        }
-        
-        .name a:hover {
-            color: #767676;
-        }
-        
-        /* Navigation menu */
-        .nav {
-            display: flex;
-            gap: 22px;
-        }
-        
-        .nav a {
-            color: #000000;
-            text-decoration: underline;
-            font-size: var(--nav-font-size);
-            font-weight: 300;
-            transition: color 0.2s ease;
-        }
-        
-        .nav a:hover {
-            color: #b8b8b8;
-        }
-        
-        /* New hover styles for specific links */
-        .nav a[href="/Collab"] {
-            color: #ff212e;
-            text-decoration: underline;
-            font-weight: 300;
-            font-size: var(--nav-font-size);
-        }
-        
-        .nav a[href="/Collab"]:hover {
-            color: #ff9097;
-        }
-        
-        .nav a[href="/Mystic"] {
-            color: #9D00FF;
-            font-weight: 300;
-            text-decoration: underline;
-            font-size: var(--nav-font-size);
-        }
-        
-        .nav a[href="/Mystic"]:hover {
-            color: #c580e2;
-        }
-        
-        /* Blog title */
-        h1 {
-            font-size: var(--title-font-size);
-            font-weight: 400;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        
-        /* Content paragraphs */
-        p {
-            margin-bottom: 16px;
-            line-height: 1.3em;
-            font-size: var(--content-font-size);
-        }
-        
-        .content {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-        
-        /* Blog featured image */
-        .featured-image {
-            width: 100%;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        /* Blog images */
-        .blog-image {
-            width: 100%;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        /* Divider between sections */
-        .divider {
-            height: 1px;
-            background-color: #ebecec;
-            margin: 20px 0;
-        }
-        
-        /* Default link styling */
-        a {
-            color: #302B27;
-            text-decoration: underline;
-            transition: color 0.2s ease;
-        }
-        
-        a:hover {
-            color: #7a7772;
-        }
-        
-        /* Subtle flowing text animation */
-        @keyframes gentleFloat {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-3px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .flowing-text {
-            display: inline-block;
-            animation: gentleFloat 3s ease-in-out infinite;
-        }
-        
-        /* Staggered animation for each word to create a flowing effect */
-        .flowing-text:nth-child(2) {
-            animation-delay: 0.5s;
-        }
-        
-        .flowing-text:nth-child(3) {
-            animation-delay: 1s;
-        }
-        
-        .flowing-text:nth-child(4) {
-            animation-delay: 1.5s;
-        }
-        
-        /* Responsive Design with dynamic font sizing */
-        /* Mobile/small screens */
-        @media (max-width: 480px) {
-            :root {
-                --base-font-size: 3.2vw;
-            }
-            
-            .header {
-                flex-wrap: wrap;
-                row-gap: 8px;
-            }
-            
-            .name {
-                margin-right: auto;
-            }
-            
-            .nav {
-                margin-left: auto;
-            }
-            
-            body {
-                padding: 3vh 15px;
-                line-height: 1.3;
-            }
-            
-            .content {
-                gap: 4px;
-            }
-        }
-        
-        /* Tablet screens */
-        @media (min-width: 481px) and (max-width: 768px) {
-            :root {
-                --base-font-size: 2.2vw;
-            }
-            
-            body {
-                padding: 4vh 18px;
-            }
-        }
-
-        /* Desktop screens - set a base size that works well */
-        @media (min-width: 769px) and (max-width: 1200px) {
-            :root {
-                --base-font-size: 1.5vw;
-            }
-        }
-        
-        /* Large desktop screens - prevent text from becoming too large */
-        @media (min-width: 1201px) {
-            :root {
-                --base-font-size: 18px;
-            }
-        }
-
-        /* Smaller phones */
-        @media (max-width: 375px) {
-            :root {
-                --base-font-size: 2.8vw;
-            }
-            
-            body {
-                padding: 2vh 12px;
-            }
-        }
-
-        /* Font display swap to avoid FOIT */
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 300;
-            font-display: swap;
-            src: local('Inter Light'), local('Inter-Light');
-        }
-        @font-face {
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: local('Inter Regular'), local('Inter-Regular');
-        }
-    </style>
-    <!-- Google tag (gtag.js) -->
+    
+    <!-- Google Analytics (GA4) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TK0GGSYKYD"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-TK0GGSYKYD');
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-TK0GGSYKYD');
     </script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: #fff;
+            color: #222;
+            padding: 40px 24px;
+            line-height: 1.5;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 15px;
+        }
+
+        a {
+            color: #222;
+        }
+
+        a:hover {
+            color: #666;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .header-links {
+            font-size: 14px;
+        }
+
+        .header-links a {
+            color: #666;
+        }
+
+        .header-links a:hover {
+            color: #222;
+        }
+
+        .header-links span {
+            color: #ccc;
+            margin: 0 6px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 32px 0 24px 0;
+        }
+
+        section {
+            margin-bottom: 28px;
+        }
+
+        .content p {
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .note {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .blog-image {
+            width: 100%;
+            margin: 24px 0;
+            border-radius: 8px;
+        }
+
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid #eaeaea;
+            font-size: 13px;
+            color: #999;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 32px 20px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header with name and navigation -->
-    <div class="header">
-        <div class="name"><a href="https://singamreddy.com" id="animated-name">Mayank Singamreddy</a></div>
-        <div class="nav">
-            <a href="/Collab">Collab</a>
-            <a href="/Mystic">Mysticism</a>
+    <header>
+        <h1><a href="https://singamreddy.com" style="text-decoration: none;">Mayank Singamreddy</a></h1>
+        <div class="header-links">
+            <a href="https://singamreddy.com">Home</a><span>·</span><a href="/Mystic.html">Mysticism</a>
         </div>
-    </div>
-    
-    <!-- Blog title -->
-    <h1>On Mysticism and Proof of God</h1>
-    
-    <!-- Blog content -->
-    <div class="content">
-        <p> Note: this was written in 2022. The message stands but I can write better. Will update.</p>
+    </header>
+
+    <h2 class="page-title">On Mysticism and Proof of God</h2>
+
+    <section class="content">
+        <p class="note">Note: this was written in 2022. The message stands but I can write better. Will update.</p>
+        
         <p>
             At some level I've always wanted to believe in god. But I spent childhood in the same mentality as most of my generation: I was angry at god. The usual question of, how could such immense suffering exist in parts of the world under this 'all-caring god you speak of?'. I was bored with the "he has a plan" (receiving this more often than you'd think). But time passes, and you would rather be happy than right. I remember being a kid and finding out that religious people are happier on average, and deciding to be one of them.
         </p>
         
         <p>
-            That sounds like a strange desire, because it is. The hurdles are obvious: I was too angry to believe in any sort of god that would needlessly cause such great harm in my life. Maybe religion could be found without a god? This turned me to Buddhism, which turned me to <span class="flowing-text">Be Here Now</span> and <span class="flowing-text">Autobiography of a Yogi</span>, or the video that made me buddhist: <span class="flowing-text">4 ways of letting go</span>. All of these sources spun out world-changing truths like a factory machine.
+            That sounds like a strange desire, because it is. The hurdles are obvious: I was too angry to believe in any sort of god that would needlessly cause such great harm in my life. Maybe religion could be found without a god? This turned me to Buddhism, which turned me to Be Here Now and Autobiography of a Yogi, or the video that made me buddhist: 4 ways of letting go. All of these sources spun out world-changing truths like a factory machine.
         </p>
         
         <p>
@@ -342,7 +180,7 @@
         </p>
         
         <p>
-            I have found what is proof enough for me of god. I found out recently about the concept of <span class="flowing-text">quantum entanglement</span>. Funny enough, it is a good scientific explanation for the supernatural.
+            I have found what is proof enough for me of god. I found out recently about the concept of quantum entanglement. Funny enough, it is a good scientific explanation for the supernatural.
         </p>
         
         <p>
@@ -352,70 +190,10 @@
         <p>
             Despite our distance, we were still affected by one another. If souls exist, those gurus were probably telling the truth about everything else.
         </p>
+    </section>
+
+    <div class="footer">
+        © 2025 Mayank Singamreddy
     </div>
-    
-    <div class="divider"></div>
-    <script>
-        // Animated name functionality
-        const nameElement = document.getElementById('animated-name');
-        if (nameElement) {
-            const originalText = nameElement.textContent;
-            
-            // Split the name into individual letter spans
-            nameElement.innerHTML = originalText.split('').map(letter => 
-                letter === ' ' ? `<span>&nbsp;</span>` : `<span>${letter}</span>`
-            ).join('');
-            
-            const letters = nameElement.querySelectorAll('span');
-            const colors = ['#3597C7', '#F8C630', '#7FC6A4'];
-            let animationInterval;
-            let isHovered = false;
-            
-            function updateColors() {
-                if (isHovered) return;
-                
-                letters.forEach(letter => {
-                    if (letter.innerHTML === '&nbsp;') {
-                        letter.style.color = 'transparent';
-                        return;
-                    }
-                    
-                    const randomIndex = Math.floor(Math.random() * colors.length);
-                    letter.style.color = colors[randomIndex];
-                });
-            }
-            
-            // Start animation
-            updateColors();
-            animationInterval = setInterval(updateColors, 500);
-            
-            // Pause and change color on hover/click
-            nameElement.addEventListener('mouseenter', function() {
-                isHovered = true;
-                letters.forEach(letter => {
-                    if (letter.innerHTML === '&nbsp;') {
-                        letter.style.color = 'transparent';
-                        return;
-                    }
-                    letter.style.color = '#302B27';
-                });
-            });
-            
-            nameElement.addEventListener('mouseleave', function() {
-                isHovered = false;
-            });
-            
-            nameElement.addEventListener('click', function() {
-                isHovered = true;
-                letters.forEach(letter => {
-                    if (letter.innerHTML === '&nbsp;') {
-                        letter.style.color = 'transparent';
-                        return;
-                    }
-                    letter.style.color = '#302B27';
-                });
-            });
-        }
-    </script>
 </body>
 </html>
